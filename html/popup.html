@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/popup.css"/>
+  </head>
+  <body>
+    <div id="main-container">
+      <div id="execute-container">
+        <button id="capture-button">
+          Capture
+        </button>
+        <p id="test">
+          
+        </p>
+      </div>
+      <div id="configuration-instructions-container">
+        <p class="message">
+          Configura la conexión al plugin de captura
+        </p>
+        <button id="configuration-button">
+          Configurar
+        </button>
+      </div>
+      <div id="configuration-form-container">
+        <label for="host-ip" id="host-ip-label">
+            Host Server Name or IP Address
+          </label>
+          <br/>
+          <input type="text" id="host-ip" value="localhost"/>
+          <br/>
+          <label for="host-port" id="host-port-label">
+            Host Port
+          </label>
+          <br/>
+          <input type="text" id="host-port" value="8000"/>
+          <br/>
+          <button id="configuration-submit-button">
+            Save
+          </button>
+      </div>
+    </div>
+    <script src="/js/popup.js"></script>
+  </body>
+</html>
