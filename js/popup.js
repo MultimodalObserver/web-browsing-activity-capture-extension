@@ -1,6 +1,7 @@
-var execute = document.getElementById('execute-container');
 var configurationInstructions = document.getElementById('configuration-instructions-container');
 var configurationForm = document.getElementById('configuration-form-container');
+var captureMessage = document.getElementById('capture-message');
+var captureButton = document.getElementById('capture-button');
 
 /* Cada vez que se clickee el icono de la extension, se ejecutará el código de este archivo de este archivo
 
@@ -15,21 +16,19 @@ Vemos si es que está asignada la configuración al servidor HTTPS:
 
 */
 chrome.storage.local.get(['httpsConfiguration'], function(result){
-	if(result.httpsConfiguration){
-		execute.style.display='block';
-		configurationInstructions.style.display = 'none';
+	chrome.storage.local.get(['capturing'], function(res){
+		console.log("capturing", res.capturing);
+		console.log("httpsConfiguration", result.httpsConfiguration);
+		captureButton.style.display = result.httpsConfiguration && !res.capturing? 'block' : 'none';
+		captureMessage.style.display = result.httpsConfiguration  && res.capturing? 'block': 'none';
+		configurationInstructions.style.display = !result.httpsConfiguration? 'block' : 'none';
 		configurationForm.style.display = 'none';
-		return;
-	}
-	execute.style.display='none';
-	configurationInstructions.style.display = 'block';
-	configurationForm.style.display = 'none';
-
-
+	});
 });
 
 var showConfigurationForm = function(){
-	execute.style.display = 'none';
+	captureButton.style.display = 'none';
+	captureMessage.style.display= 'none';
 	configurationInstructions.style.display='none';
 	configurationForm.style.display = 'block';
 };
@@ -52,34 +51,23 @@ var saveConfiguration = function(){
 	};
 
 	chrome.storage.local.set({httpsConfiguration: configurationObject}, function (){
-		execute.style.display = 'block';
+		captureMessage.style.display = 'none';
+		captureButton.style.display = 'block';
 		configurationInstructions.style.display='none';
 		configurationForm.style.display = 'none';
 
 	});
 };
 
-var buildData = function(historyResult, callback){
-	chrome.history.getVisits({url: historyResult.url}, function(results){
-		historyResult['visits'] = results;
-		callback(historyResult);
-	})
-};
 
 var capture = function(){
-	chrome.history.onVisited.addListener(function(result){
-		buildData(result, function(buildResult){
-			console.log(buildResult);
-		});
+	chrome.storage.local.set({capturing: true}, function (){
+		captureButton.style.display = 'none';
+		captureMessage.style.display = 'block';
 	});
 };
-
-var capture_test = function(){
-	chrome.storage.local.set({capture: true}, function (){
-	});
-}
 
 
 document.getElementById('configuration-button').addEventListener('click', showConfigurationForm);
 document.getElementById('configuration-submit-button').addEventListener('click', saveConfiguration);
-document.getElementById('capture-button').addEventListener('click', capture_test);
+document.getElementById('capture-button').addEventListener('click', capture);
