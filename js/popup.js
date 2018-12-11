@@ -1,7 +1,22 @@
-var configurationInstructions = document.getElementById('configuration-instructions-container');
+var configurationInstructionsContainer = document.getElementById('configuration-instructions-container');
 var configurationForm = document.getElementById('configuration-form-container');
-var captureMessage = document.getElementById('capture-message');
+var captureInitMessage = document.getElementById('capture-message');
 var captureButton = document.getElementById('capture-button');
+var configurationButton = document.getElementById('configuration-button');
+var configurationInstructions = document.getElementById('configuration-instructions');
+var hostIPLabel = document.getElementById('host-ip-label');
+var hostPortLabel = document.getElementById('host-port-label');
+var configurationSubmitButton = document.getElementById('configuration-submit-button');
+
+/* Inicializamos los textos de los elementos, segun el locale actual*/
+configurationInstructions.innerHTML = chrome.i18n.getMessage("configurationInstructionsMessage");
+configurationButton.innerHTML = chrome.i18n.getMessage("configurationButtonText");
+hostIPLabel.innerHTML = chrome.i18n.getMessage("hostNameLabelText");
+hostPortLabel.innerHTML = chrome.i18n.getMessage("hostPortLabelText");
+configurationSubmitButton.innerHTML = chrome.i18n.getMessage("configurationSubmitButtonText");
+captureButton.innerHTML =  chrome.i18n.getMessage("captureButtonText");
+captureInitMessage.innerHTML = chrome.i18n.getMessage("captureInitMessage");
+
 
 /* Cada vez que se clickee el icono de la extension, se ejecutará el código de este archivo de este archivo
 
@@ -20,16 +35,16 @@ chrome.storage.local.get(['httpsConfiguration'], function(result){
 		console.log("capturing", res.capturing);
 		console.log("httpsConfiguration", result.httpsConfiguration);
 		captureButton.style.display = result.httpsConfiguration && !res.capturing? 'block' : 'none';
-		captureMessage.style.display = result.httpsConfiguration  && res.capturing? 'block': 'none';
-		configurationInstructions.style.display = !result.httpsConfiguration? 'block' : 'none';
+		captureInitMessage.style.display = result.httpsConfiguration  && res.capturing? 'block': 'none';
+		configurationInstructionsContainer.style.display = !result.httpsConfiguration? 'block' : 'none';
 		configurationForm.style.display = 'none';
 	});
 });
 
 var showConfigurationForm = function(){
 	captureButton.style.display = 'none';
-	captureMessage.style.display= 'none';
-	configurationInstructions.style.display='none';
+	captureInitMessage.style.display= 'none';
+	configurationInstructionsContainer.style.display='none';
 	configurationForm.style.display = 'block';
 };
 
@@ -51,9 +66,9 @@ var saveConfiguration = function(){
 	};
 
 	chrome.storage.local.set({httpsConfiguration: configurationObject}, function (){
-		captureMessage.style.display = 'none';
+		captureInitMessage.style.display = 'none';
 		captureButton.style.display = 'block';
-		configurationInstructions.style.display='none';
+		configurationInstructionsContainer.style.display='none';
 		configurationForm.style.display = 'none';
 
 	});
@@ -63,7 +78,7 @@ var saveConfiguration = function(){
 var capture = function(){
 	chrome.storage.local.set({capturing: true}, function (){
 		captureButton.style.display = 'none';
-		captureMessage.style.display = 'block';
+		captureInitMessage.style.display = 'block';
 	});
 };
 

@@ -9,7 +9,6 @@ en donde almacenamos la configuracion de la conexion al servidor https montando 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
 	for (key in changes) {
 		if(key === 'capturing' && changes[key].newValue === true){
-
 			var buildData = function(historyResult, callback){
 				chrome.history.getVisits({url: historyResult.url}, function(results){
 					historyResult['visits'] = results;
@@ -22,6 +21,7 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 					chrome.storage.local.get(['httpsConfiguration'], function(result){
 						var url = 'http://' + result.httpsConfiguration.host +
 						 ':'+result.httpsConfiguration.port + '/capture';
+						 console.log("Enviando dato");
 						fetch(url, {
 							method: 'POST',
 							body: JSON.stringify(buildResult)

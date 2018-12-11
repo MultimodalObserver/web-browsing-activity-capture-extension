@@ -1,0 +1,42 @@
+{
+	"extensionName": {
+		"message": "Mo Url Capturer",
+		"description": "The extension name"
+	},
+	"extensionDescription": {
+		"message": "It captures the urls that have been visited since its activation until its end",
+		"description": "The extension description"
+	},
+	"extensionDefaultTitle": {
+		"message": "Multimodal Observer",
+		"description": "The text shown in the extension icon tooltip"
+	},
+	"captureButtonText":{
+		"message": "Capture",
+		"description": "The text shown in the extension popup capture button"
+	},
+	"captureInitMessage": {
+		"message": "Capturing...",
+		"description": "The text shown after the user press the capture button"
+	},
+	"configurationInstructionsMessage":{
+		"message": "Configure the connection to the MO capture plugin",
+		"description": "The text shown to the user when no server connection configuration was detected"
+	},
+	"configurationButtonText":{
+		"message": "Configure",
+		"description" : "The text shown in the extension popup server connection configuration button"
+	},
+	"hostNameLabelText": {
+		"message": "Host server name or ip address",
+		"description" : "The text of the label that is shown to the user, in the configuration form, to ask for the server name or ip adress"
+	},
+	"hostPortLabelText":{
+		"message": "Host Port",
+		"description" : "The text of the label that is shown to the user, in the configuration form, to ask for the host server port"
+	},
+	"configurationSubmitButtonText":{
+		"message": "Save",
+		"description": "The text shown in the configuration form submit button"
+	}
+}

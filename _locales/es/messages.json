@@ -1,0 +1,42 @@
+{
+	"extensionName": {
+		"message": "Capturador de urls de MO",
+		"description": "Nombre de la extensión"
+	},
+	"extensionDescription": {
+		"message": "Captura las urls que se han visitado desde su inicialización hasta su finalización",
+		"description": "Descripción de la extensión"
+	},
+	"extensionDefaultTitle": {
+		"message": "Multimodal Observer",
+		"description": "El texto mostrado al poner el mouse sobre el icono de la extensión"
+	},
+	"captureButtonText":{
+		"message": "Capturar",
+		"description": "El texto mostrado en el botón de captura del popup de la extensión"
+	},
+	"captureInitMessage": {
+		"message": "Capturando...",
+		"description": "El texto mostrado luego de que el usuario hace click en el botón de captura"
+	},
+	"configurationInstructionsMessage":{
+		"message": "Configurar la conexión al plugin de captura de urls de MO",
+		"description": "El texto mostrado al usuario cuando no se ha detectado una configuración, con el servidor, almacenada"
+	},
+	"configurationButtonText":{
+		"message": "Configurar",
+		"description" : "El texto mostrado en el botón que abre el menú de configuración en el popup de la extensión"
+	},
+	"hostNameLabelText": {
+		"message": "Nombre o dirección ip del host servidor",
+		"description" : "El texto mostrado como label en el formulario de configuración, que indica que se debe ingresar la ip o el nombre del servidor"
+	},
+	"hostPortLabelText":{
+		"message": "Puerto del host",
+		"description" : "El texto mostrado como label en el formulario de configuración, que indica que se debe ingresar el puerto del servidor"
+	},
+	"configurationSubmitButtonText":{
+		"message": "Guardar",
+		"description": "El texto que se muestra en el botón de guardardo de la configuración de la conexión al servidor"
+	}
+}
