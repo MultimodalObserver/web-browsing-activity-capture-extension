@@ -9,6 +9,7 @@ en donde almacenamos la configuracion de la conexion al servidor https montando 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
 	for (key in changes) {
 		if(key === 'capturing' && changes[key].newValue === true){
+
 			var buildData = function(historyResult, callback){
 				chrome.history.getVisits({url: historyResult.url}, function(results){
 					historyResult['visits'] = results;
@@ -29,6 +30,11 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 							console.log("Response", res);
 						}).catch(error => {
 							console.error('Error:', error);
+							chrome.storage.local.set({serverError : true}, function(){
+								chrome.storage.local.set({capturing: false}, function (){
+
+								});
+							});
 						});
 					});
 				});

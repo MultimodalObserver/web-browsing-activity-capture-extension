@@ -15,6 +15,10 @@
 		"message": "Capturar",
 		"description": "El texto mostrado en el botón de captura del popup de la extensión"
 	},
+	"stopCaptureButtonText":{
+		"message": "Detener captura",
+		"description": "El texto mostrado en el botón de detención de captura del popup de la extensión"
+	},
 	"captureInitMessage": {
 		"message": "Capturando...",
 		"description": "El texto mostrado luego de que el usuario hace click en el botón de captura"
@@ -38,5 +42,9 @@
 	"configurationSubmitButtonText":{
 		"message": "Guardar",
 		"description": "El texto que se muestra en el botón de guardardo de la configuración de la conexión al servidor"
+	},
+	"serverErrorMessage": {
+		"message": "Error al establecer conexión con el plugin de MO",
+		"description": "El mensaje mostrado cuando se dectecta un erro de conexión con el servidor"
 	}
 }

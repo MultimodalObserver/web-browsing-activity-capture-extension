@@ -15,6 +15,10 @@
 		"message": "Capture",
 		"description": "The text shown in the extension popup capture button"
 	},
+	"stopCaptureButtonText":{
+		"message": "Stop capture",
+		"description": "The text shown in the extensionpop stop capture button"
+	},
 	"captureInitMessage": {
 		"message": "Capturing...",
 		"description": "The text shown after the user press the capture button"
@@ -38,5 +42,9 @@
 	"configurationSubmitButtonText":{
 		"message": "Save",
 		"description": "The text shown in the configuration form submit button"
+	},
+	"serverErrorMessage": {
+		"message": "Error when establishing connection with the MO plugin",
+		"description": "The message shown when a server error connection is detected"
 	}
 }
