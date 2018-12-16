@@ -16,21 +16,7 @@ hostPortLabel.innerHTML = chrome.i18n.getMessage("hostPortLabelText");
 configurationSubmitButton.innerHTML = chrome.i18n.getMessage("configurationSubmitButtonText");
 captureButton.innerHTML =  chrome.i18n.getMessage("captureButtonText");
 captureInitMessage.innerHTML = chrome.i18n.getMessage("captureInitMessage");
-stopCaptureButton.innerHtml = chrome.i18n.getMessage("stopCaptureButtonText");
-
-
-/* Cada vez que se clickee el icono de la extension, se ejecutará el código de este archivo de este archivo
-
-Vemos si es que está asignada la configuración al servidor HTTPS:
-
-	- Si está, mostramos lo que por defecto se muestra en el html, que es el mensaje de estado de la
-	 extension.
-
-	- Si no está, habilitamos las instrucciones de configuración, que en caso de ser presionado
-	el botón para configurar, habilitará el formulario de configuración con su respectiva
-	funcionalidad.
-
-*/
+stopCaptureButton.innerHTML = chrome.i18n.getMessage("stopCaptureButtonText");
 
 
 
@@ -73,10 +59,12 @@ var saveConfiguration = function(){
 	};
 
 	chrome.storage.local.set({httpsConfiguration: configurationObject}, function (){
-		captureInitMessage.style.display = 'none';
-		captureButton.style.display = 'block';
-		configurationInstructionsContainer.style.display='none';
-		configurationForm.style.display = 'none';
+		chrome.storage.local.set({serverError: false}, function(){
+			captureInitMessage.style.display = 'none';
+			captureButton.style.display = 'block';
+			configurationInstructionsContainer.style.display='none';
+			configurationForm.style.display = 'none';
+		});
 	});
 };
 

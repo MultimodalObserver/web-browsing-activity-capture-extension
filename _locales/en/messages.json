@@ -17,7 +17,7 @@
 	},
 	"stopCaptureButtonText":{
 		"message": "Stop capture",
-		"description": "The text shown in the extensionpop stop capture button"
+		"description": "The text shown in the extension popup stop capture button"
 	},
 	"captureInitMessage": {
 		"message": "Capturing...",
