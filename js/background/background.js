@@ -19,6 +19,8 @@ el request al servidor:
 
 */
 
+/*
+
 var buildData = function(historyItem, callback){
 			chrome.history.getVisits({url: historyItem.url}, function(results){
 				historyItem['visits'] = results;
@@ -53,5 +55,20 @@ chrome.history.onVisited.addListener(function(historyResult){
 		}
 
 		buildData(historyResult, sendData);
+	});
+});
+*/
+
+/* Cada vez que se recibe un mensaje desde el script de contenido, se ejecuta la acción
+asociada al mensaje, en caso de que la opción de captura este activada */
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+	chrome.storage.local.get(['capturing'], function(storageCaptureResult){
+		if(!storageCaptureResult.capturing){
+			return;
+		}
+		else if(!request.action){
+			return;
+		}
+		messageActionsMap[request.action](request, sender, sendResponse);
 	});
 });

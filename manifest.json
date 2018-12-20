@@ -9,13 +9,13 @@
           "matches": [
             "<all_urls>"
           ],
-          "js": ["contenido.js"]
+          "js": ["/js/content/eventHandlers.js","/js/content/content.js"]
         }
     ],
 	"background": {
-		"scripts": ["/js/background.js"],
+		"scripts": ["/js/background/globalVariables.js","/js/background/ajax.js","/js/background/messageActionsMap.js", "/js/background/background.js"]
 	},
-	"permissions": ["storage","history", "tabs"],
+	"permissions": ["storage", "tabs"],
 	"browser_action": {
 		"default_title": "__MSG_extensionDefaultTitle__",
 		"default_popup": "/html/popup.html",
