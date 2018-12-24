@@ -1,8 +1,9 @@
 function sendAjaxRequest(config, successCallback, errorCallback){
 	if(!config.url){
 		console.error("Configuration must include a url");
+		return;
 	}
-	if(config.method !== "POST" || config.method !== "GET"){
+	if(config.method !== 'POST' && config.method !== 'GET'){
 		console.error("POST and GET are the only http methods supported by now");
 		return;
 	}

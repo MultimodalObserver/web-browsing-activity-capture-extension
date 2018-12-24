@@ -10,7 +10,7 @@ var messagesActionsMap = {
 	},
 	'keystroke': function(message, sender){
 		sendAjaxRequest({
-			method: "POST",
+			method: 'POST',
 			url: urlServer+'keystrokes',
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
@@ -37,14 +37,14 @@ var messagesActionsMap = {
 			data: {
 				browser: browserName,
 				pageUrl: sender.tab.url,
-				xPage: message.pageX,
-				yPage: message.pageY,
-				xClient: message.clientX,
-				yClient: message.clientY,
-				xScreen: message.screenX,
-				yScreen: message.screenY,
-				xMovement: message.movementX,
-				yMovement: message.movementY,
+				xPage: message.xPage,
+				yPage: message.yPage,
+				xClient: message.xClient,
+				yClient: message.yClient,
+				xScreen: message.xScreen,
+				yScreen: message.yScreen,
+				xMovement: message.xMovement,
+				yMovement: message.yMovement,
 				captureTimestamp: message.captureTimestamp
 			}
 		}, function(sucess){
@@ -63,14 +63,14 @@ var messagesActionsMap = {
 			data: {
 				browser: browserName,
 				pageUrl: sender.tab.url,
-				xPage: message.pageX,
-				yPage: message.pageY,
-				xClient: message.clientX,
-				yClient: message.clientY,
-				xScreen: message.screenX,
-				yScreen: message.screenY,
-				xMovement: message.movementX,
-				yMovement: message.movementY,
+				xPage: message.xPage,
+				yPage: message.yPage,
+				xClient: message.xClient,
+				yClient: message.yClient,
+				xScreen: message.xScreen,
+				yScreen: message.yScreen,
+				xMovement: message.xMovement,
+				yMovement: message.yMovement,
 				captureTimestamp: message.captureTimestamp
 			}
 		}, function(sucess){

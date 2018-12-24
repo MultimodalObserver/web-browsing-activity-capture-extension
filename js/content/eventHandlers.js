@@ -13,13 +13,22 @@ function sendKeystroke(keyboardEvent){
 		return;
 	}
 
-	chrome.runtime.sendMessage({
+	var keystrokeObject = {
 		action: 'keystroke',
 		pressedKey: keyboardEvent.key,
 		captureTimestamp: new Date().getDate()
-	 	},function(response){
+	};
+
+	if(chrome){
+		chrome.runtime.sendMessage(keystrokeObject,function(response){
 
 		});
+	}
+	else{
+		browser.runtime.sendMessage(keystrokeObject,function(response){
+
+		});
+	}
 }
 
 /* Función que se ejecuta cuando se detecta que se ha seleccionado texto en la pestaña
@@ -30,13 +39,23 @@ function sendMouseUp(){
 	if(!selectedText.length){
 		return;
 	}
-	chrome.runtime.sendMessage({
+
+	var mouseUpObject = {
 		action: 'mouseUp',
 		selectedText: selectedText,
 		captureTimestamp: new Date().getDate()
-	}, function(response){
+	};
 
-	});
+	if(chrome){
+		chrome.runtime.sendMessage(mouseUpObject, function(response){
+
+		});
+	}
+	else{
+		browser.runtime.sendMessage(mouseUpObject, function(response){
+
+		});
+	}
 }
 
 /* Función que se ejecuta cuando se detecta un movimiento de mouse en la pestaña
@@ -58,9 +77,16 @@ function sendMouseMove(mouseEvent){
 		captureTimestamp: new Date().getDate()
 	};
 
-	chrome.runtime.sendMessage(mouseMoveObj, function(response){
+	if(chrome){
+		chrome.runtime.sendMessage(mouseMoveObj, function(response){
 
-	});
+		});
+	}
+	else{
+		browser.runtime.sendMessage(mouseMoveObj, function(response){
+
+		});
+	}
 }
 
 /* Funcion que se ejecuta cuando se detecta un click en la pestaña. Recibe un objeto MouseEvent,
@@ -71,7 +97,7 @@ https://www.w3schools.com/jsref/obj_mouseevent.asp
 */
 
 function sendMouseClick(mouseEvent){
-	chrome.runtime.sendMessage({
+	var mouseClickObject = {
 		action: 'mouseClick',
 		xPage: mouseEvent.pageX,
 		yPage: mouseEvent.pageY,
@@ -82,7 +108,16 @@ function sendMouseClick(mouseEvent){
 		xMovement: mouseEvent.movementX,
 		yMovement: mouseEvent.movementY,
 		captureTimestamp: new Date().getDate()
-	}, function(response){
+	};
 
-	});
+	if(chrome){
+		chrome.runtime.sendMessage(mouseClickObject, function(response){
+
+		});
+	}
+	else{
+		browser.runtime.sendMessage(mouseClickObject, function(response){
+
+		});
+	}
 }
