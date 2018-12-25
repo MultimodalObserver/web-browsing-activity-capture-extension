@@ -7,46 +7,59 @@ function showConfigurationForm(){
 
 function saveConfiguration(){
 
+	/*
 	var hostIP = document.getElementById('host-ip').value;
 	var hostPort = document.getElementById('host-port').value;
+	*/
 	var selectedBrowser = document.getElementById('browser-select').value;
 	var mouseMovesCallbackUrl = document.getElementById('mouse-moves-callback-url').value;
 	var mouseClicksCallbackUrl = document.getElementById('mouse-clicks-callback-url').value;
 	var mouseUpsCallbackUrl = document.getElementById('mouse-ups-callback-url').value;
 	var keystrokesCallbackUrl = document.getElementById('keystrokes-callback-url').value;
 
-	if(hostIP === '' || hostPort === '' || selectedBrowser === '' || mouseMovesCallbackUrl === ''
-		|| mouseClicksCallbackUrl === '' || mouseUpsCallbackUrl === '' || keystrokesCallbackUrl === ''){
+	/*var invalidHostIp = hostIP === '';
+	var invalidHostPort = hostPort === '';
+	*/
+	var invalidSelectedBrowser = selectedBrowser === '';
+	var invalidMouseMovesCallbackUrl =  !urlRegEx.test(mouseMovesCallbackUrl);
+	var invalidMouseClicksCallbackUrl = !urlRegEx.test(mouseClicksCallbackUrl);
+	var invalidMouseUpsCallbackUrl = !urlRegEx.test(mouseUpsCallbackUrl);
+	var invalidkeystrokesCallbackUrl = !urlRegEx.test(keystrokesCallbackUrl);
 
-		if(hostIP === ''){
+	if(/*invalidHostIp || invalidHostPort || */invalidSelectedBrowser || invalidMouseMovesCallbackUrl ||
+		invalidMouseClicksCallbackUrl || invalidMouseUpsCallbackUrl || invalidkeystrokesCallbackUrl){
+
+		/*
+		if(invalidHostIp){
 			document.getElementById('host-ip-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('hostIpErrorMessage') : browser.i18n.getMessage('hostIpErrorMessage');
 		}
 
-		if(hostPort === ''){
+		if(invalidHostPort){
 			document.getElementById('host-port-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('hostPortErrorMessage') : browser.i18n.getMessage('hostPortErrorMessage');
 	    }
+	    */
 
-		if(selectedBrowser === ''){
+		if(invalidSelectedBrowser){
 		}
 
-		if(mouseMovesCallbackUrl === ''){
+		if(invalidMouseMovesCallbackUrl){
 			document.getElementById('mouse-moves-callback-url-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('mouseMovesCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseMovesCallbackUrlErrorMessage');	
 		}
 
-		if(mouseClicksCallbackUrl === ''){
+		if(invalidMouseClicksCallbackUrl){
 			document.getElementById('mouse-clicks-callback-url-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('mouseClicksCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseClicksCallbackUrlErrorMessage');
 		}
 
-		if(mouseUpsCallbackUrl === ''){
+		if(invalidMouseUpsCallbackUrl){
 			document.getElementById('mouse-ups-callback-url-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('mouseUpsCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseUpsCallbackUrlErrorMessage');
 		}
 
-		if(keystrokesCallbackUrl === ''){
+		if(invalidkeystrokesCallbackUrl){
 			document.getElementById('keystrokes-callback-url-error-message').innerHTML = chrome?
 			 chrome.i18n.getMessage('keystrokesCallbackUrlErrorMessage') : browser.i18n.getMessage('keystrokesCallbackUrlErrorMessage');
 		}
@@ -54,8 +67,9 @@ function saveConfiguration(){
 	}
 
 	var configurationObject = {
-		host: hostIP,
+		/*host: hostIP,
 		port: hostPort,
+		*/
 		browser: selectedBrowser,
 		mouseMovesCallbackUrl: mouseMovesCallbackUrl,
 		mouseClicksCallbackUrl: mouseClicksCallbackUrl,

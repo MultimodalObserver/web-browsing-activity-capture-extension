@@ -1,8 +1,8 @@
 /* Inicializamos los textos y display de los elementos, segun el locale actual y el navegador*/
 if(chrome){
 	configurationButton.innerHTML = chrome.i18n.getMessage("configurationButtonText");
-	hostIPLabel.innerHTML = chrome.i18n.getMessage("hostNameLabelText");
-	hostPortLabel.innerHTML = chrome.i18n.getMessage("hostPortLabelText");
+	/*hostIPLabel.innerHTML = chrome.i18n.getMessage("hostNameLabelText");
+	hostPortLabel.innerHTML = chrome.i18n.getMessage("hostPortLabelText");*/
 	configurationSubmitButton.innerHTML = chrome.i18n.getMessage("configurationSubmitButtonText");
 	captureButton.innerHTML =  chrome.i18n.getMessage("captureButtonText");
 	captureInitMessage.innerHTML = chrome.i18n.getMessage("captureInitMessage");
@@ -30,8 +30,9 @@ if(chrome){
 }
 else{
 	configurationButton.innerHTML = browser.i18n.getMessage("configurationButtonText");
-	hostIPLabel.innerHTML = browser.i18n.getMessage("hostNameLabelText");
+	/*hostIPLabel.innerHTML = browser.i18n.getMessage("hostNameLabelText");
 	hostPortLabel.innerHTML = browser.i18n.getMessage("hostPortLabelText");
+	*/
 	configurationSubmitButton.innerHTML = browser.i18n.getMessage("configurationSubmitButtonText");
 	captureButton.innerHTML =  browser.i18n.getMessage("captureButtonText");
 	captureInitMessage.innerHTML = browser.i18n.getMessage("captureInitMessage");
