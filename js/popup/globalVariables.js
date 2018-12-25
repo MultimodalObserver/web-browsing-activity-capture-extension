@@ -14,5 +14,3 @@ var mouseMovesCallbackUrlLabel = document.getElementById('mouse-moves-callback-u
 var mouseClicksCallbackUrlLabel = document.getElementById('mouse-clicks-callback-url-label');
 var mouseUpsCallbackUrlLabel = document.getElementById('mouse-ups-callback-url-label');
 var keystrokesCallbackUrlLabel = document.getElementById('keystrokes-callback-url-label');
-
-var urlRegEx= /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm

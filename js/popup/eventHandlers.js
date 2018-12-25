@@ -7,27 +7,57 @@ function showConfigurationForm(){
 
 function saveConfiguration(){
 
+	/* Reseteamos errores del formulario */
+	var mouseMovesCallbackUrlErrorMessage = document.getElementById('mouse-moves-callback-url-error-message');
+	var mouseClicksCallbackUrlErrorMessage = document.getElementById('mouse-clicks-callback-url-error-message');
+	var mouseUpsCallbackUrlErrorMessage = document.getElementById('mouse-ups-callback-url-error-message');
+	var keystrokesCallbackUrlErrorMessage = document.getElementById('keystrokes-callback-url-error-message');
+
+	mouseMovesCallbackUrlErrorMessage.innerHTML = '';
+	mouseMovesCallbackUrlErrorMessage.style.display='none';
+	mouseClicksCallbackUrlErrorMessage.innerHTML = '';
+	mouseClicksCallbackUrlErrorMessage.style.display='none';
+	mouseUpsCallbackUrlErrorMessage.innerHTML = '';
+	mouseUpsCallbackUrlErrorMessage.style.display='none';
+	keystrokesCallbackUrlErrorMessage.innerHTML = '';
+	keystrokesCallbackUrlErrorMessage.style.display='none';
+
+
 	/*
+	Obtenemos los valores de los inputs, limpiandolos y reemplazando la palabra localhost por 127.0.0.1
+	, en caso de que sea un patrón de url que comienze con localhost
+
 	var hostIP = document.getElementById('host-ip').value;
 	var hostPort = document.getElementById('host-port').value;
 	*/
 	var selectedBrowser = document.getElementById('browser-select').value;
-	var mouseMovesCallbackUrl = document.getElementById('mouse-moves-callback-url').value;
-	var mouseClicksCallbackUrl = document.getElementById('mouse-clicks-callback-url').value;
-	var mouseUpsCallbackUrl = document.getElementById('mouse-ups-callback-url').value;
-	var keystrokesCallbackUrl = document.getElementById('keystrokes-callback-url').value;
 
-	/*var invalidHostIp = hostIP === '';
+	var mouseMovesCallbackUrl = document.getElementById('mouse-moves-callback-url').value.trim();
+	mouseMovesCallbackUrl = /^(http(s)?:\/\/)?localhost+/gm.test(mouseMovesCallbackUrl) ? mouseMovesCallbackUrl.replace('localhost', '127.0.0.1') : mouseMovesCallbackUrl;
+
+	var mouseClicksCallbackUrl = document.getElementById('mouse-clicks-callback-url').value.trim();
+	mouseClicksCallbackUrl = /^(http(s)?:\/\/)?localhost+/gm.test(mouseClicksCallbackUrl) ? mouseClicksCallbackUrl.replace('localhost', '127.0.0.1') : mouseClicksCallbackUrl;
+
+	var mouseUpsCallbackUrl = document.getElementById('mouse-ups-callback-url').value.trim();
+	mouseUpsCallbackUrl = /^(http(s)?:\/\/)?localhost+/gm.test(mouseUpsCallbackUrl) ? mouseUpsCallbackUrl.replace('localhost', '127.0.0.1') : mouseUpsCallbackUrl;
+	
+	var keystrokesCallbackUrl = document.getElementById('keystrokes-callback-url').value.trim();
+	keystrokesCallbackUrl = /^(http(s)?:\/\/)?localhost+/gm.test(keystrokesCallbackUrl) ? keystrokesCallbackUrl.replace('localhost', '127.0.0.1') : keystrokesCallbackUrl;
+
+	/* Validamos los valores de los inputs, mostrando mensajes de error en cada uno,
+	segun corresponda
+	var invalidHostIp = hostIP === '';
 	var invalidHostPort = hostPort === '';
 	*/
 	var invalidSelectedBrowser = selectedBrowser === '';
-	var invalidMouseMovesCallbackUrl =  !urlRegEx.test(mouseMovesCallbackUrl);
-	var invalidMouseClicksCallbackUrl = !urlRegEx.test(mouseClicksCallbackUrl);
-	var invalidMouseUpsCallbackUrl = !urlRegEx.test(mouseUpsCallbackUrl);
-	var invalidkeystrokesCallbackUrl = !urlRegEx.test(keystrokesCallbackUrl);
+	var invalidMouseMovesCallbackUrl =  !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm.test(mouseMovesCallbackUrl);
+	var invalidMouseClicksCallbackUrl = !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm.test(mouseClicksCallbackUrl);
+	var invalidMouseUpsCallbackUrl = !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm.test(mouseUpsCallbackUrl);
+	var invalidKeystrokesCallbackUrl = !/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/gm.test(keystrokesCallbackUrl);
+
 
 	if(/*invalidHostIp || invalidHostPort || */invalidSelectedBrowser || invalidMouseMovesCallbackUrl ||
-		invalidMouseClicksCallbackUrl || invalidMouseUpsCallbackUrl || invalidkeystrokesCallbackUrl){
+		invalidMouseClicksCallbackUrl || invalidMouseUpsCallbackUrl || invalidKeystrokesCallbackUrl){
 
 		/*
 		if(invalidHostIp){
@@ -45,27 +75,32 @@ function saveConfiguration(){
 		}
 
 		if(invalidMouseMovesCallbackUrl){
-			document.getElementById('mouse-moves-callback-url-error-message').innerHTML = chrome?
-			 chrome.i18n.getMessage('mouseMovesCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseMovesCallbackUrlErrorMessage');	
+			mouseMovesCallbackUrlErrorMessage.innerHTML = chrome?
+			 chrome.i18n.getMessage('mouseMovesCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseMovesCallbackUrlErrorMessage');
+			 mouseMovesCallbackUrlErrorMessage.style.display='block';	
 		}
 
 		if(invalidMouseClicksCallbackUrl){
-			document.getElementById('mouse-clicks-callback-url-error-message').innerHTML = chrome?
+			mouseClicksCallbackUrlErrorMessage.innerHTML = chrome?
 			 chrome.i18n.getMessage('mouseClicksCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseClicksCallbackUrlErrorMessage');
+			 mouseClicksCallbackUrlErrorMessage.style.display='block';
 		}
 
 		if(invalidMouseUpsCallbackUrl){
-			document.getElementById('mouse-ups-callback-url-error-message').innerHTML = chrome?
+			mouseUpsCallbackUrlErrorMessage.innerHTML = chrome?
 			 chrome.i18n.getMessage('mouseUpsCallbackUrlErrorMessage') : browser.i18n.getMessage('mouseUpsCallbackUrlErrorMessage');
+			mouseUpsCallbackUrlErrorMessage.style.display='block';
 		}
 
-		if(invalidkeystrokesCallbackUrl){
-			document.getElementById('keystrokes-callback-url-error-message').innerHTML = chrome?
+		if(invalidKeystrokesCallbackUrl){
+			keystrokesCallbackUrlErrorMessage.innerHTML = chrome?
 			 chrome.i18n.getMessage('keystrokesCallbackUrlErrorMessage') : browser.i18n.getMessage('keystrokesCallbackUrlErrorMessage');
+			keystrokesCallbackUrlErrorMessage.style.display='block';
 		}
 		return;
 	}
 
+	/* Si pasamos la validación, guardamos la configuración de conexión al servidores/servidores.*/
 	var configurationObject = {
 		/*host: hostIP,
 		port: hostPort,

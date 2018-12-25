@@ -29,6 +29,7 @@ var messagesActionsMap = {
 		//Implementar logica!!!
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
+		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
 			url: /*serverConfig.serverUrl+'/'+*/serverConfig.keystrokesCallbackUrl,
@@ -42,12 +43,13 @@ var messagesActionsMap = {
 				captureTimestamp: message.captureTimestamp 
 			}
 		},function(success){
-			console.log(sucess.response);
+			console.log(success.response);
 		}, function(error){
 			serverError(error);
 		});
 	},
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
+		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
 			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseMovesCallbackUrl,
@@ -67,13 +69,14 @@ var messagesActionsMap = {
 				yMovement: message.yMovement,
 				captureTimestamp: message.captureTimestamp
 			}
-		}, function(sucess){
-			console.log(sucess.response);
+		}, function(success){
+			console.log(success.response);
 		}, function(error){
 			serverError(error);
 		});
 	},
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
+		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
 			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseClicksCallbackUrl,
@@ -93,13 +96,14 @@ var messagesActionsMap = {
 				yMovement: message.yMovement,
 				captureTimestamp: message.captureTimestamp
 			}
-		}, function(sucess){
-			console.log(sucess.response);
+		}, function(success){
+			console.log(success.response);
 		}, function(error){
 			serverError(error);
 		});
 	},
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
+		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
 			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseUpsCallbackUrl,
@@ -111,8 +115,8 @@ var messagesActionsMap = {
 				pageUrl: sender.tab.url,
 				selectedText: message.selectedText
 			}
-		}, function(sucess){
-			console.log(sucess.response);
+		}, function(success){
+			console.log(success.response);
 		}, function(error){
 			serverError(error);
 		});
