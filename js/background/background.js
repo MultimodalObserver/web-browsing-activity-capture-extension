@@ -12,7 +12,15 @@ if(chrome){
 			else if(!request.action){
 				return;
 			}
-			messagesActionsMap[request.action](request, sender, sendResponse);
+			chrome.storage.local.get(['httpsConfiguration'], function(configResult){
+				if(!configResult.httpsConfiguration){
+					return;
+				}
+				configResult.httpsConfiguration['serverUrl'] = 'http://'+configResult.httpsConfiguration.host+':'
+					configResult.httpsConfiguration.port;
+ 
+				messagesActionsMap[request.action](request, sender, sendResponse, configResult.httpsConfiguration);
+			});
 		});
 	});
 }
@@ -28,7 +36,15 @@ else{
 			else if(!request.action){
 				return;
 			}
-			messagesActionsMap[request.action](request, sender, sendResponse);
+			browser.storage.local.get(['httpsConfiguration'], function(configResult){
+				if(!configResult.httpsConfiguration){
+					return;
+				}
+				configResult.httpsConfiguration['serverUrl'] = 'http://'+configResult.httpsConfiguration.host+':'
+					configResult.httpsConfiguration.port;
+
+				messagesActionsMap[request.action](request, sender, sendResponse, configResult.httpsConfiguration);
+			});
 		});
 	});
 }

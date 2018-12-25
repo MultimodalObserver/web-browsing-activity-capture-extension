@@ -46,5 +46,49 @@
 	"serverErrorMessage": {
 		"message": "Error al establecer conexión con el plugin de MO",
 		"description": "El mensaje mostrado cuando se dectecta un erro de conexión con el servidor"
+	},
+	"hostIpErrorMessage":{
+		"message": "Debes ingresar un nombre o ip de host válido",
+		"description": "El mensaje mostrado al usuario cuando ocurre un eror de validación de la ip del host"
+	},
+	"hostPortErrorMessage":{
+		"message": "Debes ingresar un número de puerto válido",
+		"description": "El mensaje mostrado al usuario cuando ocurre un eror de validación del puerto del host"
+	},
+	"mouseMovesCallbackUrlErrorMessage":{
+		"message": "Debes ingresar una url de devolución de llamada, para la captura de movimientos del mouse, válida",
+		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de movimientos del mouse"
+	},
+	"mouseClicksCallbackUrlErrorMessage":{
+		"message": "Debes ingresar una url de devolución de llamada, para la captura de los clicks del mouse, válida",
+		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de clicks del mouse"
+	},
+	"mouseUpsCallbackUrlErrorMessage":{
+		"message": "Debes ingresar una url de devolución de llamada, para la captura de selecciones del mouse, válida",
+		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de selecciones del mouse"
+	},
+	"keystrokesCallbackUrlErrorMessage":{
+		"message": "Debes ingresar una url de devolución de llamada, para la captura de pulsaciones de teclas, válida",
+		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de pulsaciones de teclas"
+	},
+	"browserSelectLabelText":{
+		"message": "Selecciona el navegador desde el cual estás utilizando la extensión",
+		"description": "El texto mostrado en la etiqueta del seleccionador de navegador"
+	},
+	"mouseMovesCallbackUrlLabelText":{
+		"message": "Url de devolución de llamada para la captura de movimientos del mouse",
+		"description": "El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de movimientos del mouse"
+	},
+	"mouseClicksCallbackUrlLabelText":{
+		"message":"Url de devolución de llamada para la captura de clicks del mouse",
+		"description": "El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de clicks del mouse"
+	},
+	"mouseUpsCallbackUrlLabelText":{
+		"message":"Url de devolución de llamada para la captura de selecciones del mouse",
+		"description":"El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de selecciones del mouse"
+	},
+	"keystrokesCallbackUrlLabelText":{
+		"message":"Url de devolución de llamada para la captura de pulsaciones de teclas",
+		"description":"El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de pulsaciones de teclas"
 	}
 }

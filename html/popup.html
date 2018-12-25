@@ -23,19 +23,65 @@
       </div>
       <div id="configuration-form-container">
         <label for="host-ip" id="host-ip-label">
-          </label>
-          <br/>
-          <input type="text" id="host-ip" value="localhost"/>
-          <br/>
-          <label for="host-port" id="host-port-label">
-          </label>
-          <br/>
-          <input type="text" id="host-port" value="8000"/>
-          <br/>
-          <button id="configuration-submit-button">
-          </button>
+        </label>
+        <br/>
+        <input type="text" id="host-ip" value="localhost"/>
+        <p id="host-ip-error-message">
+        </p>
+        <br/>
+        <label for="host-port" id="host-port-label">
+        </label>
+        <br/>
+        <input type="text" id="host-port" value="8000"/>
+        <br/>
+        <p id="host-port-error-message">
+        </p>
+        <label id="browser-select-label"for="browser-select">
+        </label>
+        <br/>
+        <select id="browser-select">
+          <option value="Google Chrome">Google Chrome</option>
+          <option value="Mozilla Firefox">Mozilla Firefox</option>
+          <option value="Microsoft Edge">Microsoft Edge</option>
+          <option value="Opera">Opera</option>
+        </select>
+        <br/>
+        <br/>
+        <label id="mouse-moves-callback-url-label" for="mouse-moves-callback-url">
+        </label>
+        <br/>
+        <input type="text" id="mouse-moves-callback-url"/>
+        <br/>
+        <p id="mouse-moves-callback-url-error-message">
+        </p>
+        <label id="mouse-clicks-callback-url-label" for="mouse-clicks-callback-url">
+        </label>
+        <br/>
+        <input type="text" id="mouse-clicks-callback-url"/>
+        <br/>
+        <p id="mouse-clicks-callback-url-error-message">
+        </p>
+        <label id="mouse-ups-callback-url-label" for="mouse-ups-callback-url">
+        </label>
+        <br/>
+        <input type="text" id="mouse-ups-callback-url"/>
+        <br/>
+        <p id="mouse-ups-callback-url-error-message">
+        </p>
+        <label id="keystrokes-callback-url-label" for="keystrokes-callback-url">
+        </label>
+        <br/>
+        <input type="text" id="keystrokes-callback-url"/>
+        <br/>
+        <p id="keystrokes-callback-url-error-message">
+        </p>
+        <button id="configuration-submit-button">
+        </button>
       </div>
     </div>
-    <script src="/js/popup.js"></script>
+    <script src="/js/popup/globalVariables.js"></script>
+    <script src="/js/popup/eventHandlers.js"></script>
+    <script src="/js/popup/bootstrap.js"></script>
+    <script src="/js/popup/popup.js"></script>
   </body>
 </html>

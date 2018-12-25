@@ -46,5 +46,49 @@
 	"serverErrorMessage": {
 		"message": "Error when establishing connection with the MO plugin",
 		"description": "The message shown when a server error connection is detected"
+	},
+	"hostIpErrorMessage":{
+		"message": "You must enter a valid host server name  or an IP address",
+		"description": "The message shown to the user when a validation error of host ip occurs"
+	},
+	"hostPortErrorMessage":{
+		"message": "You must enter a valid host port number",
+		"description": "The message shown to the user when a validation error of host port occurs"
+	},
+	"mouseMovesCallbackUrlErrorMessage":{
+		"message": "You must enter a valid callback url for the mouse moves capture",
+		"description": "The message shown to the user when a validation error of mouse moves callback url occurs"
+	},
+	"mouseClicksCallbackUrlErrorMessage":{
+		"message": "You must enter a valid callback url for the mouse clicks capture",
+		"description": "The message shown to the user when a validation error of mouse clicks callback url occurs"
+	},
+	"mouseUpsCallbackUrlErrorMessage":{
+		"message": "You must enter a valid callback url for the mouse ups capture",
+		"description": "The message shown to the user when a validation error of mouse ups callback url occurs"
+	},
+	"keystrokesCallbackUrlErrorMessage":{
+		"message": "You must enter a valid callback url for the keystrokes capture",
+		"description": "The message shown to the user when a validation error of keystrokes callback url occurs"
+	},
+	"browserSelectLabelText":{
+		"message": "Select the browser from wich you are using the extension",
+		"description": "The text shown in the browser select label"
+	},
+	"mouseMovesCallbackUrlLabelText":{
+		"message": "Mouse moves capture callback URL",
+		"description": "The text shown in the mouse moves callback url label"
+	},
+	"mouseClicksCallbackUrlLabelText":{
+		"message":"Mouse clicks capture callback URL",
+		"description": "The text shown in the mouse clicks callback url label"
+	},
+	"mouseUpsCallbackUrlLabelText":{
+		"message":"Mouse ups capture callback URL",
+		"description":"The text shown in the mouse ups callback url label"
+	},
+	"keystrokesCallbackUrlLabelText":{
+		"message":"Keystrokes capture callback URL",
+		"description":"The text shown in the keystrokes callback url label"
 	}
 }

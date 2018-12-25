@@ -4,19 +4,39 @@
 	según el tipo de accion capturada que representa.
 
 */ 
+
+/* Funcion helper para setear error de servidor */
+function serverError(error){
+	if(chrome){
+		chrome.storage.local.set({serverError : true}, function(){
+			chrome.storage.local.set({capturing: false}, function (){
+				console.log(error);
+			});
+		});
+	}
+	else{
+		browser.storage.local.set({serverError : true}, function(){
+			browser.storage.local.set({capturing: false}, function (){
+				console.log(error);
+			});
+		});
+	}
+}
+
+
 var messagesActionsMap = {
-	'newTab': function(message, sender){
+	'newTab': function(message, sender, sendResponse, serverConfig){
 		//Implementar logica!!!
 	},
-	'keystroke': function(message, sender){
+	'keystroke': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: urlServer+'keystrokes',
+			url: serverConfig.serverUrl+serverConfig.keystrokesCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
-				browser : browserName,
+				browser : serverConfig.browser,
 				pageUrl: sender.tab.url,
 				keyValue: message.pressedKey,
 				captureTimestamp: message.captureTimestamp 
@@ -24,18 +44,18 @@ var messagesActionsMap = {
 		},function(success){
 			console.log(sucess.response);
 		}, function(error){
-			console.log(error.response);
+			serverError(error);
 		});
 	},
-	'mouseMove': function(message, sender){
+	'mouseMove': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: urlServer+'mouseMoves',
+			url: serverConfig.serverUrl+serverConfig.mouseMovesCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
-				browser: browserName,
+				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				xPage: message.xPage,
 				yPage: message.yPage,
@@ -50,18 +70,18 @@ var messagesActionsMap = {
 		}, function(sucess){
 			console.log(sucess.response);
 		}, function(error){
-			console.log(error.response);
+			serverError(error);
 		});
 	},
-	'mouseClick': function(message, sender){
+	'mouseClick': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: urlServer+'mouseClicks',
+			url: serverConfig.serverUrl+serverConfig.mouseClicksCallbackUrl,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
-				browser: browserName,
+				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				xPage: message.xPage,
 				yPage: message.yPage,
@@ -76,25 +96,25 @@ var messagesActionsMap = {
 		}, function(sucess){
 			console.log(sucess.response);
 		}, function(error){
-			console.log(error.response);
+			serverError(error);
 		});
 	},
-	'mouseUp': function(message, sender){
+	'mouseUp': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: urlServer+'mouseUps',
+			url: serverConfig.serverUrl+serverConfig.mouseUpsCallbackUrl,
 			headers:{
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data:{
-				browser: browserName,
+				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				selectedText: message.selectedText
 			}
 		}, function(sucess){
 			console.log(sucess.response);
 		}, function(error){
-			console.log(error.response);
+			serverError(error);
 		});
 	}
 };
