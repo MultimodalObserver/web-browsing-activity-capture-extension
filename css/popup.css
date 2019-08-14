@@ -5,7 +5,7 @@
 #main-container{
 	padding: 10px;
 	margin: 0;
-	width: 300px;
+	min-width: 500px;
 }
 
 .message{
@@ -13,12 +13,85 @@
 	text-align: center;
 }
 
-#configuration-button:{
+#configuration-button{
 	width: 90%;
 	padding: 5px 8px;
 	margin: auto;
 }
 
+.action-container{
+	width: 100%;
+}
+
+
+.action-title{
+	text-align: center;
+	font-weight: bold;
+    width: 100%;
+    display: block;
+    clear: both;
+}
+
+.action-params-container{
+	width:100%;
+}
+
+.action-params-container .left-side{
+	width: 50%;
+    float: left;
+}
+
+.action-params-container .right-side{
+    width: 50%;
+	float:left;
+}
+
+.left-side label,.right-side label{
+    width: auto;
+    display:inline-block;
+    float: left;
+}
+
+.left-side input,.right-side input{
+    width: auto;
+    display: inline-block;
+    float: left;
+    position:relative;
+    left: 10px;
+}
+
+.left-side,.right-side p {
+
+}
+
 .error-message{
 	color: red;
+}
+
+.clearfix::after{
+    content:"";
+    clear:both;
+    display:table;
+}
+
+.custom-button{
+    margin-top: 10px;
+    padding: 5px;
+    display:block;
+    width:100%;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.float-left{
+    float: left;
+}
+
+.pos-rel-left-10{
+    position: relative;
+    left: 10px;
+}
+
+.browser-select-container{
+    margin-bottom: 10px;
 }

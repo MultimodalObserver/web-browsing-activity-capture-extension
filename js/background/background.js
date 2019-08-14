@@ -1,51 +1,21 @@
-if(chrome){
-	chrome.runtime.onInstalled.addListener(function() {
-	    console.log("inicializando extension");
-	});
-	/* Cada vez que se recibe un mensaje desde el script de contenido, se ejecuta la acción
-	asociada al mensaje, en caso de que la opción de captura este activada */
-	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-		chrome.storage.local.get(['capturing'], function(storageCaptureResult){
-			if(!storageCaptureResult.capturing){
+/* Cada vez que se recibe un mensaje desde el script de contenido, se ejecuta la acción
+asociada al mensaje, en caso de que la opción de captura este activada */
+currentBrowser.runtime.onMessage.addListener(function(request, sender, sendResponse){
+	currentBrowser.storage.local.get(['capturing'], function(storageCaptureResult){
+		if(!storageCaptureResult.capturing){
+			return;
+		}
+		else if(!request.action){
+			return;
+		}
+		currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
+			if(!configResult.httpsConfiguration){
 				return;
 			}
-			else if(!request.action){
-				return;
-			}
-			chrome.storage.local.get(['httpsConfiguration'], function(configResult){
-				if(!configResult.httpsConfiguration){
-					return;
-				}
-				configResult.httpsConfiguration['serverUrl'] = 'http://'+configResult.httpsConfiguration.host+':'
-					configResult.httpsConfiguration.port;
- 
-				messagesActionsMap[request.action](request, sender, sendResponse, configResult.httpsConfiguration);
-			});
+			var throttledFunction = throttle(messagesActionsMap[request.action],
+				configResult[request.action].throttle);
+			throttledFunction(request, sender, sendResponse, configResult);
 		});
 	});
-}
-else{
-	browser.runtime.onInstalled.addListener(function() {
-	    console.log("inicializando extension");
-	});
-	browser.runtime.onMessage.addListener(function(request, sender, sendResponse){
-		browser.storage.local.get(['capturing'], function(storageCaptureResult){
-			if(!storageCaptureResult.capturing){
-				return;
-			}
-			else if(!request.action){
-				return;
-			}
-			browser.storage.local.get(['httpsConfiguration'], function(configResult){
-				if(!configResult.httpsConfiguration){
-					return;
-				}
-				configResult.httpsConfiguration['serverUrl'] = 'http://'+configResult.httpsConfiguration.host+':'
-					configResult.httpsConfiguration.port;
-
-				messagesActionsMap[request.action](request, sender, sendResponse, configResult.httpsConfiguration);
-			});
-		});
-	});
-}
+});
 

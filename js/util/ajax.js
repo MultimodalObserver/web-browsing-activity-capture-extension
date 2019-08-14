@@ -9,8 +9,8 @@ function sendAjaxRequest(config, successCallback, errorCallback){
 	}
 	var ajaxRequest = new XMLHttpRequest();
 	ajaxRequest.onreadystatechange = function() {
-		if (ajaxRequest.readyState == 4) {
-			if(ajaxRequest.status == 200){
+		if (ajaxRequest.readyState === 4) {
+			if(ajaxRequest.status === 200){
 				successCallback({
 					'status': ajaxRequest.status,
 					'response': ajaxRequest.responseText
@@ -35,6 +35,7 @@ function sendAjaxRequest(config, successCallback, errorCallback){
 			console.error("The POST body data must be provided");
 			return;
 		}
+		console.log(config.data);
 		ajaxRequest.send(JSON.stringify(config.data));	
 	}
 	else{

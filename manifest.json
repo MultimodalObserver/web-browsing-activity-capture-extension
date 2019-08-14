@@ -9,11 +9,11 @@
           "matches": [
             "<all_urls>"
           ],
-          "js": ["/js/content/eventHandlers.js","/js/content/content.js"]
+          "js": ["/js/content/globalVariables.js","/js/content/eventHandlers.js","/js/util/throttle.js","/js/content/content.js"]
         }
     ],
 	"background": {
-		"scripts": ["/js/background/globalVariables.js","/js/background/ajax.js","/js/background/messageActionsMap.js", "/js/background/background.js"]
+		"scripts": ["/js/util/serverError.js","/js/background/globalVariables.js","/js/util/ajax.js","/js/background/messageActionsMap.js", "/js/background/background.js"]
 	},
 	"permissions": ["storage", "tabs"],
 	"browser_action": {

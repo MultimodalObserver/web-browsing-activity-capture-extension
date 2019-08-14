@@ -1,53 +1,40 @@
 /* Inicializamos los textos y display de los elementos, segun el locale actual y el navegador*/
-if(chrome){
-	configurationButton.innerHTML = chrome.i18n.getMessage("configurationButtonText");
-	/*hostIPLabel.innerHTML = chrome.i18n.getMessage("hostNameLabelText");
-	hostPortLabel.innerHTML = chrome.i18n.getMessage("hostPortLabelText");*/
-	configurationSubmitButton.innerHTML = chrome.i18n.getMessage("configurationSubmitButtonText");
-	captureButton.innerHTML =  chrome.i18n.getMessage("captureButtonText");
-	captureInitMessage.innerHTML = chrome.i18n.getMessage("captureInitMessage");
-	stopCaptureButton.innerHTML = chrome.i18n.getMessage("stopCaptureButtonText");
-	browserSelectLabel.innerHTML = chrome.i18n.getMessage("browserSelectLabelText");
-	mouseMovesCallbackUrlLabel.innerHTML = chrome.i18n.getMessage("mouseMovesCallbackUrlLabelText");
-	mouseClicksCallbackUrlLabel.innerHTML = chrome.i18n.getMessage("mouseClicksCallbackUrlLabelText");
-	mouseUpsCallbackUrlLabel.innerHTML = chrome.i18n.getMessage("mouseUpsCallbackUrlLabelText");
-	keystrokesCallbackUrlLabel.innerHTML = chrome.i18n.getMessage("keystrokesCallbackUrlLabelText");
+configurationButton.innerHTML = currentBrowser.i18n.getMessage("configurationButtonText");
+configurationSubmitButton.innerHTML = currentBrowser.i18n.getMessage("configurationSubmitButtonText");
+captureButton.innerHTML =  currentBrowser.i18n.getMessage("captureButtonText");
+captureInitMessage.innerHTML = currentBrowser.i18n.getMessage("captureInitMessage");
+stopCaptureButton.innerHTML = currentBrowser.i18n.getMessage("stopCaptureButtonText");
+browserSelectLabel.innerHTML = currentBrowser.i18n.getMessage("browserSelectLabelText");
+mouseMovesCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+mouseClicksCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+mouseUpsCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+keystrokesCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+tabsCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+searchsCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
+mouseMovesActionTitle.innerHTML = currentBrowser.i18n.getMessage("mouseMovesActionTitleText");
+mouseClicksActionTitle.innerHTML = currentBrowser.i18n.getMessage("mouseClicksActionTitleText");
+mouseUpsActionTitle.innerHTML = currentBrowser.i18n.getMessage("mouseUpsActionTitleText");
+keystrokesActionTitle.innerHTML = currentBrowser.i18n.getMessage("keystrokesActionTitleText");
+tabsActionTitle.innerHTML = currentBrowser.i18n.getMessage('tabsActionTitleText');
+searchsActionTitle.innerHTML = currentBrowser.i18n.getMessage('searchsActionTitleText')
+serverUrlLabel.innerHTML = currentBrowser.i18n.getMessage("serverUrlLabelText");
+mouseMovesThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
+mouseClicksThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
+mouseUpsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
+keystrokesThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
+tabsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
+searchsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 
-
-	chrome.storage.local.get(['httpsConfiguration'], function(result){
-		chrome.storage.local.get(['capturing'], function(res){
-			chrome.storage.local.get(['serverError'], function (re){
-				captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
-				captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
-				stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
-				configurationInstructions.innerHTML = re.serverError? chrome.i18n.getMessage("serverErrorMessage") 
-				: chrome.i18n.getMessage("configurationInstructionsMessage");
-				configurationInstructionsContainer.style.display = !result.httpsConfiguration || re.serverError? 'block' : 'none';
-				configurationForm.style.display = 'none';
-			});
+currentBrowser.storage.local.get(['httpsConfiguration'], function(result){
+	currentBrowser.storage.local.get(['capturing'], function(res){
+		currentBrowser.storage.local.get(['serverError'], function (re){
+			captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
+			captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
+			stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
+			configurationInstructions.innerHTML = re.serverError? currentBrowser.i18n.getMessage("serverErrorMessage")
+				: currentBrowser.i18n.getMessage("configurationInstructionsMessage");
+			configurationInstructionsContainer.style.display = !result.httpsConfiguration || re.serverError? 'block' : 'none';
+			configurationForm.style.display = 'none';
 		});
 	});
-}
-else{
-	configurationButton.innerHTML = browser.i18n.getMessage("configurationButtonText");
-	/*hostIPLabel.innerHTML = browser.i18n.getMessage("hostNameLabelText");
-	hostPortLabel.innerHTML = browser.i18n.getMessage("hostPortLabelText");
-	*/
-	configurationSubmitButton.innerHTML = browser.i18n.getMessage("configurationSubmitButtonText");
-	captureButton.innerHTML =  browser.i18n.getMessage("captureButtonText");
-	captureInitMessage.innerHTML = browser.i18n.getMessage("captureInitMessage");
-	stopCaptureButton.innerHTML = browser.i18n.getMessage("stopCaptureButtonText");
-	browser.storage.local.get(['httpsConfiguration'], function(result){
-		browser.storage.local.get(['capturing'], function(res){
-			browser.storage.local.get(['serverError'], function (re){
-				captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
-				captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
-				stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
-				configurationInstructions.innerHTML = re.serverError? browser.i18n.getMessage("serverErrorMessage") 
-				: browser.i18n.getMessage("configurationInstructionsMessage");
-				configurationInstructionsContainer.style.display = !result.httpsConfiguration || re.serverError? 'block' : 'none';
-				configurationForm.style.display = 'none';
-			});
-		});
-	});
-}
+});

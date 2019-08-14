@@ -3,42 +3,26 @@
 	mensaje recibido de algun tipo de accion: funcion que maneja ese mensaje
 	según el tipo de accion capturada que representa.
 
-*/ 
-
-/* Funcion helper para setear error de servidor */
-function serverError(error){
-	if(chrome){
-		chrome.storage.local.set({serverError : true}, function(){
-			chrome.storage.local.set({capturing: false}, function (){
-				console.log(error);
-			});
-		});
-	}
-	else{
-		browser.storage.local.set({serverError : true}, function(){
-			browser.storage.local.set({capturing: false}, function (){
-				console.log(error);
-			});
-		});
-	}
-}
-
-
+*/
 var messagesActionsMap = {
-	'newTab': function(message, sender, sendResponse, serverConfig){
+	'search': function(message, sender, sendResponse, serverConfig){
+		/* Implementar logica */
+	},
+	'tab': function(message, sender, sendResponse, serverConfig){
 		//Implementar logica!!!
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
 		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: /*serverConfig.serverUrl+'/'+*/serverConfig.keystrokesCallbackUrl,
+			url: serverConfig.serverBaseUrl + serverConfig.keystrokes.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
 				browser : serverConfig.browser,
 				pageUrl: sender.tab.url,
+				pageTitle: sender.tab.title,
 				keyValue: message.pressedKey,
 				captureTimestamp: message.captureTimestamp 
 			}
@@ -52,13 +36,14 @@ var messagesActionsMap = {
 		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseMovesCallbackUrl,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseMoves.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
+				pageTitle: sender.tab.title,
 				xPage: message.xPage,
 				yPage: message.yPage,
 				xClient: message.xClient,
@@ -79,13 +64,14 @@ var messagesActionsMap = {
 		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseClicksCallbackUrl,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseClicks.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data: {
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
+				pageTitle: sender.tab.title,
 				xPage: message.xPage,
 				yPage: message.yPage,
 				xClient: message.xClient,
@@ -106,13 +92,14 @@ var messagesActionsMap = {
 		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: /*serverConfig.serverUrl+'/'+*/serverConfig.mouseUpsCallbackUrl,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseUps.route,
 			headers:{
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
 			data:{
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
+				pageTitle: sender.tab.title,
 				selectedText: message.selectedText
 			}
 		}, function(success){

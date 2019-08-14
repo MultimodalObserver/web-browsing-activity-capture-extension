@@ -24,7 +24,7 @@
 		"description": "El texto mostrado luego de que el usuario hace click en el botón de captura"
 	},
 	"configurationInstructionsMessage":{
-		"message": "Configurar la conexión al plugin de captura de urls de MO",
+		"message": "Configurar la conexión al plugin de captura de acciones de MO",
 		"description": "El texto mostrado al usuario cuando no se ha detectado una configuración, con el servidor, almacenada"
 	},
 	"configurationButtonText":{
@@ -47,48 +47,56 @@
 		"message": "Error al establecer conexión con el plugin de MO",
 		"description": "El mensaje mostrado cuando se dectecta un erro de conexión con el servidor"
 	},
-	"hostIpErrorMessage":{
-		"message": "Debes ingresar un nombre o ip de host válido",
-		"description": "El mensaje mostrado al usuario cuando ocurre un eror de validación de la ip del host"
-	},
-	"hostPortErrorMessage":{
-		"message": "Debes ingresar un número de puerto válido",
-		"description": "El mensaje mostrado al usuario cuando ocurre un eror de validación del puerto del host"
-	},
-	"mouseMovesCallbackUrlErrorMessage":{
-		"message": "Debes ingresar una url de devolución de llamada, para la captura de movimientos del mouse, válida",
-		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de movimientos del mouse"
-	},
-	"mouseClicksCallbackUrlErrorMessage":{
-		"message": "Debes ingresar una url de devolución de llamada, para la captura de los clicks del mouse, válida",
-		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de clicks del mouse"
-	},
-	"mouseUpsCallbackUrlErrorMessage":{
-		"message": "Debes ingresar una url de devolución de llamada, para la captura de selecciones del mouse, válida",
-		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de selecciones del mouse"
-	},
-	"keystrokesCallbackUrlErrorMessage":{
-		"message": "Debes ingresar una url de devolución de llamada, para la captura de pulsaciones de teclas, válida",
-		"description": "El mensaje mostrado al usuario cuando ocurre un error de validación de la url de devolución de llamada de la captura de pulsaciones de teclas"
-	},
 	"browserSelectLabelText":{
 		"message": "Selecciona el navegador desde el cual estás utilizando la extensión",
 		"description": "El texto mostrado en la etiqueta del seleccionador de navegador"
 	},
-	"mouseMovesCallbackUrlLabelText":{
-		"message": "Url de devolución de llamada para la captura de movimientos del mouse",
-		"description": "El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de movimientos del mouse"
+	"serverUrlLabelText":{
+		"message": "URL base del servidor del plugin de captura de MO",
+		"description": "El texto mostrado en la etiqueta de url base del servidor"
 	},
-	"mouseClicksCallbackUrlLabelText":{
-		"message":"Url de devolución de llamada para la captura de clicks del mouse",
-		"description": "El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de clicks del mouse"
+	"routeText": {
+		"message": "Ruta",
+		"description": "El texto mostrado en la etiqueta de la ruta de la acción"
 	},
-	"mouseUpsCallbackUrlLabelText":{
-		"message":"Url de devolución de llamada para la captura de selecciones del mouse",
-		"description":"El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de selecciones del mouse"
+	"mouseMovesActionTitleText": {
+		"message": "Movimientos del mouse",
+		"description": "El texto mostrado en la sección de configuración de movimientos del mouse"
 	},
-	"keystrokesCallbackUrlLabelText":{
-		"message":"Url de devolución de llamada para la captura de pulsaciones de teclas",
-		"description":"El texto mostrado en la etiqueta del campo para ingresar la url de devolución de llamada de la captura de pulsaciones de teclas"
+	"mouseClicksActionTitleText": {
+		"message": "Clicks del mouse",
+		"description": "El texto mostrado en la sección de configuración de clicks del mouse"
+	},
+	"mouseUpsActionTitleText": {
+		"message": "Selecciones de texto con el mouse",
+		"description": "El texto mostrado en la sección de configuración de selecciones de texto del mouse"
+	},
+	"keystrokesActionTitleText": {
+		"message": "Teclas presionadas",
+		"description": "El texto mostrado en la sección de configuración de teclas presionadas"
+	},
+	"throttleText": {
+		"message": "Throttle",
+		"description": "El texto mostrado en la etiqueta de throttle de cada tipo de acción"
+	},
+	"tabsActionTitleText": {
+		"message": "Pestañas",
+		"description": "El texto mostrado en la sección de configuración de datos de pestañas"
+	},
+	"searchsActionTitleText": {
+		"message": "Búsquedas",
+		"description": "El texto mostrado en la sección de configuración de las búsquedas realizadas"
+	},
+	"invalidRouteText": {
+		"message": "Ruta inválida",
+		"description": "El texto mostrado en el mensaje de error de alguna de las rutas ingresadas"
+	},
+	"invalidThrottleText": {
+		"message": "Tiempo de throttle inválido",
+		"description": "El texto mostrado en el mensaje de error de alguno de los throttles ingresados"
+	},
+	"serverUrlErrorText": {
+		"message": "URL inválida",
+		"description": "El texto mostrado en el mensaje de error de la url base del servidor"
 	}
 }

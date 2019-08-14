@@ -1,0 +1,1 @@
+var currentBrowser = chrome ? chrome: browser;

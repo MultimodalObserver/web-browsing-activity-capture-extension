@@ -19,16 +19,9 @@ function sendKeystroke(keyboardEvent){
 		captureTimestamp: new Date().getDate()
 	};
 
-	if(chrome){
-		chrome.runtime.sendMessage(keystrokeObject,function(response){
+	currentBrowser.runtime.sendMessage(keystrokeObject,function(response){
 
-		});
-	}
-	else{
-		browser.runtime.sendMessage(keystrokeObject,function(response){
-
-		});
-	}
+	});
 }
 
 /* Función que se ejecuta cuando se detecta que se ha seleccionado texto en la pestaña
@@ -46,16 +39,9 @@ function sendMouseUp(){
 		captureTimestamp: new Date().getDate()
 	};
 
-	if(chrome){
-		chrome.runtime.sendMessage(mouseUpObject, function(response){
+	currentBrowser.runtime.sendMessage(mouseUpObject, function(response){
 
-		});
-	}
-	else{
-		browser.runtime.sendMessage(mouseUpObject, function(response){
-
-		});
-	}
+	});
 }
 
 /* Función que se ejecuta cuando se detecta un movimiento de mouse en la pestaña
@@ -77,16 +63,9 @@ function sendMouseMove(mouseEvent){
 		captureTimestamp: new Date().getDate()
 	};
 
-	if(chrome){
-		chrome.runtime.sendMessage(mouseMoveObj, function(response){
+	currentBrowser.runtime.sendMessage(mouseMoveObj, function(response){
 
-		});
-	}
-	else{
-		browser.runtime.sendMessage(mouseMoveObj, function(response){
-
-		});
-	}
+	});
 }
 
 /* Funcion que se ejecuta cuando se detecta un click en la pestaña. Recibe un objeto MouseEvent,
@@ -110,14 +89,7 @@ function sendMouseClick(mouseEvent){
 		captureTimestamp: new Date().getDate()
 	};
 
-	if(chrome){
-		chrome.runtime.sendMessage(mouseClickObject, function(response){
+	currentBrowser.runtime.sendMessage(mouseClickObject, function(response){
 
-		});
-	}
-	else{
-		browser.runtime.sendMessage(mouseClickObject, function(response){
-
-		});
-	}
+	});
 }
