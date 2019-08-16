@@ -35,7 +35,6 @@ function sendAjaxRequest(config, successCallback, errorCallback){
 			console.error("The POST body data must be provided");
 			return;
 		}
-		console.log(config.data);
 		ajaxRequest.send(JSON.stringify(config.data));	
 	}
 	else{

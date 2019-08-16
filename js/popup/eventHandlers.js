@@ -200,33 +200,70 @@ function saveConfiguration() {
 
 function capture() {
     /* Aqui debemos hacer la peticion al endpoint start del servidor JAVA*/
-    sendAjaxRequest({
-        method: "POST",
-        url: 'http://localhost:8000/start',
-        headers: {
-            'Content-Type': 'application/json;charset=UTF-8'
-        },
-        data: {
-            'client-key': 'example-key'
-        },
-    }, function (success) {
-        currentBrowser.storage.local.set({capturing: true}, function () {
-            captureButton.style.display = 'none';
-            captureInitMessage.style.display = 'block';
-            stopCaptureButton.style.display = 'block';
-            currentBrowser.storage.local.set({serverError: false}, function () {
+    currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
+        if(!configResult.httpsConfiguration){
+            return;
+        }
+        sendAjaxRequest({
+            method: "POST",
+            url: configResult.httpsConfiguration.serverBaseUrl + '/start',
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8'
+            },
+            data: {
+                'client-key': 'example-key'
+            },
+        }, function (success) {
+            currentBrowser.storage.local.set({capturing: true}, function () {
+                captureButton.style.display = 'none';
+                captureInitMessage.style.display = 'block';
+                stopCaptureButton.style.display = 'block';
+                currentBrowser.storage.local.set({serverError: false}, function () {
 
+                });
             });
+        }, function (error) {
+            serverError(error);
         });
-    }, function (error) {
-        serverError(error);
-    });
+    })
+}
+function removeActionListeners(){
+    window.removeEventListener('click', sendMouseClick, false);
+    window.removeEventListener('keyup', sendKeystroke, false);
+    window.removeEventListener('mousemove', sendMouseMove, false);
+    window.removeEventListener('click', sendMouseClick, false);
 }
 
 function stopCapture() {
+    /* Primero se detiene la captura a nivel lógico en la extension,
+    y luego se detiene en el servidor de MO
+     */
     currentBrowser.storage.local.set({capturing: false}, function () {
         captureButton.style.display = 'block';
         captureInitMessage.style.display = 'none';
         stopCaptureButton.style.display = 'none';
+        currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
+            if(!configResult.httpsConfiguration){
+                return;
+            }
+            sendAjaxRequest({
+                method: 'POST',
+                url: configResult.httpsConfiguration.serverBaseUrl + "/stop",
+                data: {
+                    'client-key': 'example-key'
+                }
+            }, function(success){
+                removeActionListeners();
+                currentBrowser.storage.local.set({serverError: false}, function () {
+                    currentBrowser.storage.local.set({capturing: false}, function () {
+                        captureButton.style.display = 'block';
+                        captureInitMessage.style.display = 'none';
+                        stopCaptureButton.style.display = 'none';
+                    });
+                });
+            }, function(error){
+                serverError(error);
+            })
+        })
     });
 }

@@ -16,7 +16,7 @@ mouseClicksActionTitle.innerHTML = currentBrowser.i18n.getMessage("mouseClicksAc
 mouseUpsActionTitle.innerHTML = currentBrowser.i18n.getMessage("mouseUpsActionTitleText");
 keystrokesActionTitle.innerHTML = currentBrowser.i18n.getMessage("keystrokesActionTitleText");
 tabsActionTitle.innerHTML = currentBrowser.i18n.getMessage('tabsActionTitleText');
-searchsActionTitle.innerHTML = currentBrowser.i18n.getMessage('searchsActionTitleText')
+searchsActionTitle.innerHTML = currentBrowser.i18n.getMessage('searchsActionTitleText');
 serverUrlLabel.innerHTML = currentBrowser.i18n.getMessage("serverUrlLabelText");
 mouseMovesThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 mouseClicksThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
@@ -27,7 +27,7 @@ searchsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 
 currentBrowser.storage.local.get(['httpsConfiguration'], function(result){
 	currentBrowser.storage.local.get(['capturing'], function(res){
-		currentBrowser.storage.local.get(['serverError'], function (re){
+		currentBrowser.storage.local.get(['serverResponse'], function (re){
 			captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
 			captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
 			stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';

@@ -13,8 +13,8 @@ currentBrowser.runtime.onMessage.addListener(function(request, sender, sendRespo
 				return;
 			}
 			var throttledFunction = throttle(messagesActionsMap[request.action],
-				configResult[request.action].throttle);
-			throttledFunction(request, sender, sendResponse, configResult);
+				configResult.httpsConfiguration[request.action].throttle * 1000);
+			throttledFunction(request, sender, sendResponse, configResult.httpsConfiguration);
 		});
 	});
 });

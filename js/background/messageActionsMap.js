@@ -12,10 +12,9 @@ var messagesActionsMap = {
 		//Implementar logica!!!
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
-		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.keystrokes.route,
+			url: serverConfig.serverBaseUrl + serverConfig.keystroke.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -33,10 +32,9 @@ var messagesActionsMap = {
 		});
 	},
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
-		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseMoves.route,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseMove.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -61,10 +59,9 @@ var messagesActionsMap = {
 		});
 	},
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
-		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseClicks.route,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseClick.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -83,16 +80,15 @@ var messagesActionsMap = {
 				captureTimestamp: message.captureTimestamp
 			}
 		}, function(success){
-			console.log(success.response);
+
 		}, function(error){
 			serverError(error);
 		});
 	},
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
-		console.log(serverConfig);
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseUps.route,
+			url: serverConfig.serverBaseUrl + serverConfig.mouseUp.route,
 			headers:{
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
