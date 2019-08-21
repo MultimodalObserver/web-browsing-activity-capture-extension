@@ -14,7 +14,7 @@
     ],
 	"background": {
 		"scripts": ["/js/util/serverError.js","/js/background/globalVariables.js","/js/util/ajax.js","/js/util/throttle.js"
-		,"/js/background/messageActionsMap.js", "/js/background/background.js"]
+		,"/js/background/messageActionsMap.js", "/js/background/eventHandlers.js","/js/background/background.js"]
 	},
 	"permissions": ["storage", "tabs"],
 	"browser_action": {

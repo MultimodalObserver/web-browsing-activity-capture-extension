@@ -1,18 +1,47 @@
-/* 
-Función que se ejcuta cuando se actualiza una tab desde una ventana del navegador,
-haciendo chequeo de las urls que se obtienen se carga la tab completamente, desde el script
-de contenido
-*/
-function updatedTab(){
-
+function sendTab(tab, type){
+    if(tab.status !== 'complete'){
+        return;
+    }
+    var tabObject = {
+        action: "tab",
+        type: type,
+        index: tab.index,
+        windowId: tab.windowId,
+        highlighted: tab.highlighted,
+        active: tab.active,
+        incognito: tab.incognito,
+        width: tab.width,
+        height: tab.height,
+        url: tab.url,
+        title: tab.title,
+        status: tab.status,
+        pinned: tab.pinned,
+        audible: tab.audible,
+        discarded: tab.discarded,
+    };
+    currentBrowser.storage.local.get(['capturing'], function(storageCaptureResult){
+        if(!storageCaptureResult.capturing){
+            return;
+        }
+        currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
+            if(!configResult.httpsConfiguration){
+                return;
+            }
+            var throttledFunction = throttle(messagesActionsMap[tabObject.action],
+                configResult.httpsConfiguration[tabObject.action].throttle * 1000);
+            throttledFunction(tabObject, configResult.httpsConfiguration);
+        });
+    });
 }
 
-/* Funcion que se ejecuta cuando se crea una nueva tab desde una ventana del navegador*/
-function createdTab(){
-
+function sendTabUpdate(tab){
+    sendTab(tab, 'update');
 }
 
-/* Funcion que se ejecuta cuando se cierra una nueva tab desde una ventana del navegador*/
-function closedTab(){
+function sendTabCreated(tab){
+    sendTab(tab, 'created');
+}
 
+function sendTabClosed(tab){
+    sendTab(tab, 'closed');
 }

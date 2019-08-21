@@ -16,7 +16,6 @@ function sendKeystroke(keyboardEvent){
 	var keystrokeObject = {
 		action: 'keystroke',
 		pressedKey: keyboardEvent.key,
-		captureTimestamp: new Date().getDate()
 	};
 
 	currentBrowser.runtime.sendMessage(keystrokeObject,function(response){
@@ -36,7 +35,6 @@ function sendMouseUp(){
 	var mouseUpObject = {
 		action: 'mouseUp',
 		selectedText: selectedText,
-		captureTimestamp: new Date().getDate()
 	};
 
 	currentBrowser.runtime.sendMessage(mouseUpObject, function(response){
@@ -60,7 +58,6 @@ function sendMouseMove(mouseEvent){
 		yScreen: mouseEvent.screenY,
 		xMovement: mouseEvent.movementX,
 		yMovement: mouseEvent.movementY,
-		captureTimestamp: new Date().getDate()
 	};
 
 	currentBrowser.runtime.sendMessage(mouseMoveObj, function(response){
@@ -86,7 +83,6 @@ function sendMouseClick(mouseEvent){
 		yScreen: mouseEvent.screenY,
 		xMovement: mouseEvent.movementX,
 		yMovement: mouseEvent.movementY,
-		captureTimestamp: new Date().getDate()
 	};
 
 	currentBrowser.runtime.sendMessage(mouseClickObject, function(response){

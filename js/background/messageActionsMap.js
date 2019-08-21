@@ -6,15 +6,61 @@
 */
 var messagesActionsMap = {
 	'search': function(message, sender, sendResponse, serverConfig){
-		/* Implementar logica */
+		sendAjaxRequest({
+			method: 'POST',
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.search.route,
+			headers: {
+				'Content-Type': 'application/json;charset=UTF-8'
+			},
+			data: {
+				browser: serverConfig.browser,
+				pageUrl: sender.tab.url,
+				pageTitle: sender.tab.title,
+				queryParams: getQuery(sender.tab.url),
+				captureTimestamp: message.captureTimestamp
+			}
+		}, function(success){
+			console.log(success.response);
+		}, function(error){
+			serverError(error);
+		});
 	},
-	'tab': function(message, sender, sendResponse, serverConfig){
-		//Implementar logica!!!
+	'tab': function(message,serverConfig){
+		sendAjaxRequest({
+			method: 'POST',
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.tab.route,
+			headers:{
+				'Content-Type': 'application/json;charset=UTF-8'
+			},
+			data:{
+				browser: serverConfig.browser,
+				pageUrl: message.url,
+				pageTitle: message.title,
+				type: message.type,
+				index: message.index,
+				windowId: message.windowId,
+				highlighted: message.highlighted,
+				active: message.active,
+				incognito: message.incognito,
+				width: message.width,
+				height: message.height,
+				url: message.url,
+				title: message.title,
+				status: message.status,
+				pinned: message.pinned,
+				audible: message.audible,
+				discarded: message.discarded,
+			}
+		}, function(success){
+			console.log(success.response);
+		}, function(error){
+			serverError(error);
+		});
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.keystroke.route,
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.keystroke.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -23,7 +69,6 @@ var messagesActionsMap = {
 				pageUrl: sender.tab.url,
 				pageTitle: sender.tab.title,
 				keyValue: message.pressedKey,
-				captureTimestamp: message.captureTimestamp 
 			}
 		},function(success){
 			console.log(success.response);
@@ -34,7 +79,7 @@ var messagesActionsMap = {
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseMove.route,
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseMove.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -50,7 +95,6 @@ var messagesActionsMap = {
 				yScreen: message.yScreen,
 				xMovement: message.xMovement,
 				yMovement: message.yMovement,
-				captureTimestamp: message.captureTimestamp
 			}
 		}, function(success){
 			console.log(success.response);
@@ -61,7 +105,7 @@ var messagesActionsMap = {
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseClick.route,
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseClick.route,
 			headers: {
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -77,7 +121,6 @@ var messagesActionsMap = {
 				yScreen: message.yScreen,
 				xMovement: message.xMovement,
 				yMovement: message.yMovement,
-				captureTimestamp: message.captureTimestamp
 			}
 		}, function(success){
 
@@ -88,7 +131,7 @@ var messagesActionsMap = {
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
 		sendAjaxRequest({
 			method: 'POST',
-			url: serverConfig.serverBaseUrl + serverConfig.mouseUp.route,
+			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseUp.route,
 			headers:{
 				'Content-Type': 'application/json;charset=UTF-8'
 			},
@@ -96,7 +139,7 @@ var messagesActionsMap = {
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				pageTitle: sender.tab.title,
-				selectedText: message.selectedText
+				selectedText: message.selectedText,
 			}
 		}, function(success){
 			console.log(success.response);
