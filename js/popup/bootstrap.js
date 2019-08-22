@@ -27,7 +27,7 @@ searchsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 
 currentBrowser.storage.local.get(['httpsConfiguration'], function(result){
 	currentBrowser.storage.local.get(['capturing'], function(res){
-		currentBrowser.storage.local.get(['serverResponse'], function (re){
+		currentBrowser.storage.local.get(['serverError'], function (re){
 			captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
 			captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
 			stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';

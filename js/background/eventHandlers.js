@@ -1,24 +1,4 @@
-function sendTab(tab, type){
-    if(tab.status !== 'complete'){
-        return;
-    }
-    var tabObject = {
-        action: "tab",
-        type: type,
-        index: tab.index,
-        windowId: tab.windowId,
-        highlighted: tab.highlighted,
-        active: tab.active,
-        incognito: tab.incognito,
-        width: tab.width,
-        height: tab.height,
-        url: tab.url,
-        title: tab.title,
-        status: tab.status,
-        pinned: tab.pinned,
-        audible: tab.audible,
-        discarded: tab.discarded,
-    };
+function sendTab(tabObject){
     currentBrowser.storage.local.get(['capturing'], function(storageCaptureResult){
         if(!storageCaptureResult.capturing){
             return;
@@ -34,14 +14,55 @@ function sendTab(tab, type){
     });
 }
 
-function sendTabUpdate(tab){
-    sendTab(tab, 'update');
+function sendTabUpdate(tabId, changeInfo, tab){
+    var updatedTabObject = {
+        action: 'tab',
+        type: 'updated',
+        index: tab.index,
+        windowId: tab.windowId,
+        highlighted: tab.highlighted,
+        active: tab.active,
+        incognito: tab.incognito,
+        width: tab.width,
+        height: tab.height,
+        url: tab.url,
+        title: tab.title,
+        status: tab.status,
+        pinned: tab.pinned,
+        audible: tab.audible,
+        discarded: tab.discarded,
+    };
+    sendTab(updatedTabObject);
 }
 
 function sendTabCreated(tab){
-    sendTab(tab, 'created');
+    var tabObject = {
+        action: 'tab',
+        type: 'created',
+        index: tab.index,
+        windowId: tab.windowId,
+        highlighted: tab.highlighted,
+        active: tab.active,
+        incognito: tab.incognito,
+        width: tab.width,
+        height: tab.height,
+        url: tab.url,
+        title: tab.title,
+        status: tab.status,
+        pinned: tab.pinned,
+        audible: tab.audible,
+        discarded: tab.discarded,
+    };
+    sendTab(tabObject);
 }
 
-function sendTabClosed(tab){
-    sendTab(tab, 'closed');
+function sendTabClosed(tabId, removeinfo){
+    var closedTabObject= {
+        action: 'tab',
+        type: 'closed',
+        tabId: tabId,
+        windowId: removeinfo.windowId,
+        isWindowClosing: removeinfo.isWindowClosing
+    };
+    sendTab(closedTabObject);
 }

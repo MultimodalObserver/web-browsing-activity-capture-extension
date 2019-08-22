@@ -6,6 +6,10 @@
 */
 var messagesActionsMap = {
 	'search': function(message, sender, sendResponse, serverConfig){
+		var queryParams = getQuery(sender.tab.url);
+		if(queryParams === null){
+			return;
+		}
 		sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.search.route,
@@ -16,7 +20,7 @@ var messagesActionsMap = {
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				pageTitle: sender.tab.title,
-				queryParams: getQuery(sender.tab.url),
+				queryParams: queryParams,
 				captureTimestamp: message.captureTimestamp
 			}
 		}, function(success){
