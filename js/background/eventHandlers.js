@@ -17,9 +17,12 @@ function sendTab(tabObject){
 function sendTabUpdate(tabId, changeInfo, tab){
     var updatedTabObject = {
         action: 'tab',
-        type: 'updated',
-        index: tab.index,
-        windowId: tab.windowId,
+        tabUrl: tab.url,
+        tabTitle: tab.title,
+        actionType: 'updated',
+        tabIndex: tab.index,
+        tabId: tab.id,
+        windowId: tab.windowId/*,
         highlighted: tab.highlighted,
         active: tab.active,
         incognito: tab.incognito,
@@ -30,7 +33,7 @@ function sendTabUpdate(tabId, changeInfo, tab){
         status: tab.status,
         pinned: tab.pinned,
         audible: tab.audible,
-        discarded: tab.discarded,
+        discarded: tab.discarded,*/
     };
     sendTab(updatedTabObject);
 }
@@ -38,9 +41,12 @@ function sendTabUpdate(tabId, changeInfo, tab){
 function sendTabCreated(tab){
     var tabObject = {
         action: 'tab',
-        type: 'created',
-        index: tab.index,
-        windowId: tab.windowId,
+        tabUrl: tab.url,
+        tabTitle: tab.title,
+        actionType: 'created',
+        tabIndex: tab.index,
+        tabId: tab.id,
+        windowId: tab.windowId/*,
         highlighted: tab.highlighted,
         active: tab.active,
         incognito: tab.incognito,
@@ -51,7 +57,7 @@ function sendTabCreated(tab){
         status: tab.status,
         pinned: tab.pinned,
         audible: tab.audible,
-        discarded: tab.discarded,
+        discarded: tab.discarded*/
     };
     sendTab(tabObject);
 }
@@ -59,10 +65,13 @@ function sendTabCreated(tab){
 function sendTabClosed(tabId, removeinfo){
     var closedTabObject= {
         action: 'tab',
-        type: 'closed',
+        tabUrl: '-',
+        tabTitle: '-',
+        actionType: 'closed',
+        tabIndex: -1,
         tabId: tabId,
-        windowId: removeinfo.windowId,
-        isWindowClosing: removeinfo.isWindowClosing
+        windowId: removeinfo.windowId/*,
+        isWindowClosing: removeinfo.isWindowClosing*/
     };
     sendTab(closedTabObject);
 }

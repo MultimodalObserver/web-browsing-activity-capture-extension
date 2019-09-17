@@ -7,7 +7,7 @@
 var messagesActionsMap = {
 	'search': function(message, sender, sendResponse, serverConfig){
 		var queryParams = getQuery(sender.tab.url);
-		if(queryParams === null){
+		if(queryParams === null || queryParams['q'] === 'undefined'){
 			return;
 		}
 		sendAjaxRequest({
@@ -20,13 +20,12 @@ var messagesActionsMap = {
 				browser: serverConfig.browser,
 				pageUrl: sender.tab.url,
 				pageTitle: sender.tab.title,
-				queryParams: queryParams,
-				captureTimestamp: message.captureTimestamp
+				search: queryParams['q'].replace("+", " ")
 			}
 		}, function(success){
 			console.log(success.response);
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	},
 	'tab': function(message,serverConfig){
@@ -38,11 +37,12 @@ var messagesActionsMap = {
 			},
 			data:{
 				browser: serverConfig.browser,
-				pageUrl: message.url,
-				pageTitle: message.title,
-				type: message.type,
-				index: message.index,
-				windowId: message.windowId,
+				tabUrl: message.tabUrl,
+				tabTitle: message.tabTitle,
+				actionType: message.actionType,
+				tabIndex: message.tabIndex,
+				tabId: message.tabId,
+				windowId: message.windowId/*,
 				highlighted: message.highlighted,
 				active: message.active,
 				incognito: message.incognito,
@@ -53,12 +53,12 @@ var messagesActionsMap = {
 				status: message.status,
 				pinned: message.pinned,
 				audible: message.audible,
-				discarded: message.discarded,
+				discarded: message.discarded,*/
 			}
 		}, function(success){
 			console.log(success.response);
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
@@ -77,7 +77,7 @@ var messagesActionsMap = {
 		},function(success){
 			console.log(success.response);
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	},
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
@@ -103,7 +103,7 @@ var messagesActionsMap = {
 		}, function(success){
 			console.log(success.response);
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	},
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
@@ -125,11 +125,12 @@ var messagesActionsMap = {
 				yScreen: message.yScreen,
 				xMovement: message.xMovement,
 				yMovement: message.yMovement,
+				button: message.button
 			}
 		}, function(success){
 
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	},
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
@@ -148,7 +149,7 @@ var messagesActionsMap = {
 		}, function(success){
 			console.log(success.response);
 		}, function(error){
-			serverError(error);
+			serverError(error, true);
 		});
 	}
 };

@@ -223,7 +223,7 @@ function capture() {
                 });
             });
         }, function (error) {
-            serverError(error);
+            serverError(error, false);
         });
     })
 }
@@ -262,7 +262,7 @@ function stopCapture() {
                     });
                 });
             }, function(error){
-                serverError(error);
+                serverError(error, true);
             })
         })
     });

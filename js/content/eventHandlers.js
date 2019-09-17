@@ -83,6 +83,8 @@ function sendMouseClick(mouseEvent){
 		yScreen: mouseEvent.screenY,
 		xMovement: mouseEvent.movementX,
 		yMovement: mouseEvent.movementY,
+		relatedTarget:mouseEvent.relatedTarget,
+		button: mouseEvent.button
 	};
 
 	currentBrowser.runtime.sendMessage(mouseClickObject, function(response){
