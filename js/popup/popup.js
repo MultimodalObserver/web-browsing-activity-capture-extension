@@ -4,3 +4,4 @@ configurationButton.addEventListener('click', showConfigurationForm);
 configurationSubmitButton.addEventListener('click', saveConfiguration);
 captureButton.addEventListener('click', capture);
 stopCaptureButton.addEventListener('click', stopCapture);
+pauseCaptureButton.addEventListener('click', pauseCapture);

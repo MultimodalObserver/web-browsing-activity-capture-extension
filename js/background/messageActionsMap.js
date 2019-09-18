@@ -107,6 +107,7 @@ var messagesActionsMap = {
 		});
 	},
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
+		console.log(message);
 		sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseClick.route,
@@ -123,8 +124,6 @@ var messagesActionsMap = {
 				yClient: message.yClient,
 				xScreen: message.xScreen,
 				yScreen: message.yScreen,
-				xMovement: message.xMovement,
-				yMovement: message.yMovement,
 				button: message.button
 			}
 		}, function(success){

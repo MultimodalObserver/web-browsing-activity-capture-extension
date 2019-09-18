@@ -9,8 +9,13 @@
 <div id="main-container">
     <div id="execute-container">
         <button id="capture-button" class="custom-button"></button>
-        <p id="capture-message" class="message"></p>
-        <button id="stop-capture-button" class="custom-button"></button>
+        <div id="capture-state-container">
+            <p id="capture-message" class="message"></p>
+            <div class="clearfix">
+                <button id="pause-capture-button" class="custom-button w-45 mr-5 float-left"></button>
+                <button id="stop-capture-button" class="custom-button w-45 ml-5 float-left"></button>
+            </div>
+        </div>
     </div>
     <div id="configuration-instructions-container">
         <p class="message" id="configuration-instructions">

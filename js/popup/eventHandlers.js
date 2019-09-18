@@ -1,7 +1,7 @@
 
 function showConfigurationForm() {
     captureButton.style.display = 'none';
-    captureInitMessage.style.display = 'none';
+    captureStateContainer.style.display = 'none';
     configurationInstructionsContainer.style.display = 'none';
     configurationForm.style.display = 'block';
 }
@@ -189,10 +189,10 @@ function saveConfiguration() {
 
     currentBrowser.storage.local.set({httpsConfiguration: configurationObject}, function () {
         currentBrowser.storage.local.set({serverError: false}, function () {
-            captureInitMessage.style.display = 'none';
-            captureButton.style.display = 'block';
+            captureStateContainer.style.display = 'none';
             configurationInstructionsContainer.style.display = 'none';
             configurationForm.style.display = 'none';
+            captureButton.style.display = 'block';
         });
     });
 }
@@ -216,8 +216,7 @@ function capture() {
         }, function (success) {
             currentBrowser.storage.local.set({capturing: true}, function () {
                 captureButton.style.display = 'none';
-                captureInitMessage.style.display = 'block';
-                stopCaptureButton.style.display = 'block';
+                captureStateContainer.style.display = 'block';
                 currentBrowser.storage.local.set({serverError: false}, function () {
 
                 });
@@ -241,7 +240,7 @@ function stopCapture() {
     currentBrowser.storage.local.set({capturing: false}, function () {
         captureButton.style.display = 'block';
         captureInitMessage.style.display = 'none';
-        stopCaptureButton.style.display = 'none';
+        captureStateButtonsContainer.style.display = 'none';
         currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
             if(!configResult.httpsConfiguration){
                 return;
@@ -257,13 +256,19 @@ function stopCapture() {
                 currentBrowser.storage.local.set({serverError: false}, function () {
                     currentBrowser.storage.local.set({capturing: false}, function () {
                         captureButton.style.display = 'block';
-                        captureInitMessage.style.display = 'none';
-                        stopCaptureButton.style.display = 'none';
+                        captureStateContainer.style.display = 'none';
                     });
                 });
             }, function(error){
                 serverError(error, true);
             })
         })
+    });
+}
+
+function pauseCapture(){
+    currentBrowser.storage.local.set({capturing: false}, function () {
+        captureButton.style.display = 'block';
+        captureStateContainer.style.display = 'none';
     });
 }

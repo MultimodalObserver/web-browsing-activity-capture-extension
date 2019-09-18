@@ -4,6 +4,7 @@ configurationSubmitButton.innerHTML = currentBrowser.i18n.getMessage("configurat
 captureButton.innerHTML =  currentBrowser.i18n.getMessage("captureButtonText");
 captureInitMessage.innerHTML = currentBrowser.i18n.getMessage("captureInitMessage");
 stopCaptureButton.innerHTML = currentBrowser.i18n.getMessage("stopCaptureButtonText");
+pauseCaptureButton.innerHTML = currentBrowser.i18n.getMessage("pauseCaptureButtonText");
 browserSelectLabel.innerHTML = currentBrowser.i18n.getMessage("browserSelectLabelText");
 mouseMovesCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
 mouseClicksCallbackUrlLabel.innerHTML = currentBrowser.i18n.getMessage("routeText");
@@ -29,8 +30,7 @@ currentBrowser.storage.local.get(['httpsConfiguration'], function(result){
 	currentBrowser.storage.local.get(['capturing'], function(res){
 		currentBrowser.storage.local.get(['serverError'], function (re){
 			captureButton.style.display = result.httpsConfiguration && !res.capturing && !re.serverError? 'block' : 'none';
-			captureInitMessage.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
-			stopCaptureButton.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
+			captureStateContainer.style.display = result.httpsConfiguration  && res.capturing && !re.serverError? 'block': 'none';
 			configurationInstructions.innerHTML = re.serverError? currentBrowser.i18n.getMessage("serverErrorMessage")
 				: currentBrowser.i18n.getMessage("configurationInstructionsMessage");
 			configurationInstructionsContainer.style.display = !result.httpsConfiguration || re.serverError? 'block' : 'none';

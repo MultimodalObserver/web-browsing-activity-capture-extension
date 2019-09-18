@@ -81,9 +81,6 @@ function sendMouseClick(mouseEvent){
 		yClient: mouseEvent.clientY,
 		xScreen: mouseEvent.screenX,
 		yScreen: mouseEvent.screenY,
-		xMovement: mouseEvent.movementX,
-		yMovement: mouseEvent.movementY,
-		relatedTarget:mouseEvent.relatedTarget,
 		button: mouseEvent.button
 	};
 

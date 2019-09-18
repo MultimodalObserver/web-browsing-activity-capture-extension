@@ -98,6 +98,9 @@
 	"serverUrlErrorText": {
 		"message": "Invalid URL",
 		"description": "The text shown in the error message of server base url"
+	},
+	"pauseCaptureButtonText":{
+		"message": "Pause",
+		"description": "The text shown in the pause capture button"
 	}
-
 }
