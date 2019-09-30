@@ -9,16 +9,23 @@ function sendAjaxRequest(config, successCallback, errorCallback){
 	}
 	var ajaxRequest = new XMLHttpRequest();
 	ajaxRequest.onreadystatechange = function() {
+		console.log("on ready", ajaxRequest);
 		if (ajaxRequest.readyState === 4) {
-			if(ajaxRequest.status === 200){
+			if(ajaxRequest.status >= 100 && ajaxRequest.status < 300){
 				successCallback({
-					'status': ajaxRequest.status,
+					'status': {
+						'code': ajaxRequest.status,
+						'message': ajaxRequest.statusText
+					},
 					'response': ajaxRequest.responseText
 				});
 			}
 			else{
 				errorCallback({
-					'status': ajaxRequest.status,
+					'status': {
+						'code': ajaxRequest.status,
+						'message': ajaxRequest.statusText
+					},
 					'response':ajaxRequest.responseText 
 				});
 			}
@@ -40,4 +47,5 @@ function sendAjaxRequest(config, successCallback, errorCallback){
 	else{
 		ajaxRequest.send();
 	}
+	return ajaxRequest;
 }

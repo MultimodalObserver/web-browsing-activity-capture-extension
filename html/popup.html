@@ -8,7 +8,10 @@
 <body>
 <div id="main-container">
     <div id="execute-container">
-        <button id="capture-button" class="custom-button"></button>
+        <div id="capture-init-container">
+            <div id="start-capture-loader" class="loader"></div>
+            <button id="capture-button" class="custom-button"></button>
+        </div>
         <div id="capture-state-container">
             <p id="capture-message" class="message"></p>
             <div class="clearfix">
@@ -24,24 +27,26 @@
         </button>
     </div>
     <div id="configuration-form-container">
-        <div class="browser-select-container clearfix">
+        <!--<div class="browser-select-container clearfix">
             <label id="browser-select-label" for="browser-select" class="float-left">
             </label>
-            <select id="browser-select" class="float-left pos-rel-left-10">
+            <select id="browser-select" class="float-left pos-rel-left-10 custom-input">
                 <option value="Google Chrome">Google Chrome</option>
                 <option value="Mozilla Firefox">Mozilla Firefox</option>
                 <option value="Microsoft Edge">Microsoft Edge</option>
                 <option value="Opera">Opera</option>
             </select>
-        </div>
+        </div>-->
         <div class="server-url-container">
+            <p class="action-title no-margin-top" id="server-title"></p>
             <div class="clearfix">
                 <label id="server-url-label" for="server-url" class="float-left"></label>
-                <input type="text" id="server-url" class="float-left pos-rel-left-10" value="http://localhost:8000"/>
+                <input type="text" id="server-url" class="float-left pos-rel-left-10 custom-input" value="http://localhost:8000"/>
             </div>
             <p id="server-url-error-message" class="error-message">
             </p>
         </div>
+        <hr>
         <div class="action-container">
             <p class="action-title" id="mouse-moves-action-title">
             </p>
@@ -50,7 +55,7 @@
                     <div class="clearfix">
                         <label id="mouse-moves-callback-url-label" for="mouse-moves-callback-url">
                         </label>
-                        <input type="text" id="mouse-moves-callback-url" value="mouseMoves"/>
+                        <input type="text" id="mouse-moves-callback-url" class="custom-input" value="mouseMoves"/>
                     </div>
                     <p id="mouse-moves-callback-url-error-message" class="error-message">
                     </p>
@@ -59,7 +64,7 @@
                     <div class="clearfix">
                         <label id="mouse-moves-throttle-label" for="mouse-moves-throttle">
                         </label>
-                        <input type="number" id="mouse-moves-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="mouse-moves-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="mouse-moves-throttle-error-message" class="error-message">
                     </p>
@@ -74,7 +79,7 @@
                     <div class="clearfix">
                         <label id="mouse-clicks-callback-url-label" for="mouse-clicks-callback-url">
                         </label>
-                        <input type="text" id="mouse-clicks-callback-url" value="mouseClicks"/>
+                        <input type="text" id="mouse-clicks-callback-url" class="custom-input" value="mouseClicks"/>
                     </div>
                     <p id="mouse-clicks-callback-url-error-message" class="error-message">
                     </p>
@@ -83,7 +88,7 @@
                     <div class="clearfix">
                         <label id="mouse-clicks-throttle-label" for="mouse-clicks-throttle">
                         </label>
-                        <input type="number" id="mouse-clicks-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="mouse-clicks-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="mouse-clicks-throttle-error-message" class="error-message">
                     </p>
@@ -98,7 +103,7 @@
                     <div class="clearfix">
                         <label id="mouse-ups-callback-url-label" for="mouse-ups-callback-url">
                         </label>
-                        <input type="text" id="mouse-ups-callback-url" value="mouseUps"/>
+                        <input type="text" id="mouse-ups-callback-url" class="custom-input" value="mouseUps"/>
                     </div>
                     <p id="mouse-ups-callback-url-error-message" class="error-message">
                     </p>
@@ -107,7 +112,7 @@
                     <div class="clearfix">
                         <label id="mouse-ups-throttle-label" for="mouse-ups-throttle">
                         </label>
-                        <input type="number" id="mouse-ups-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="mouse-ups-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="mouse-ups-throttle-error-message" class="error-message">
                     </p>
@@ -122,7 +127,7 @@
                     <div class="clearfix">
                         <label id="keystrokes-callback-url-label" for="keystrokes-callback-url">
                         </label>
-                        <input type="text" id="keystrokes-callback-url" value="keystrokes"/>
+                        <input type="text" id="keystrokes-callback-url" class="custom-input" value="keystrokes"/>
                     </div>
                     <p id="keystrokes-callback-url-error-message" class="error-message">
                     </p>
@@ -131,7 +136,7 @@
                     <div class="clearfix">
                         <label id="keystrokes-throttle-label" for="keystrokes-throttle">
                         </label>
-                        <input type="number" id="keystrokes-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="keystrokes-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="keystrokes-throttle-error-message" class="error-message">
                     </p>
@@ -146,7 +151,7 @@
                     <div class="clearfix">
                         <label id="tabs-callback-url-label" for="tabs-callback-url">
                         </label>
-                        <input type="text" id="tabs-callback-url" value="tabs"/>
+                        <input type="text" id="tabs-callback-url" class="custom-input" value="tabs"/>
                     </div>
                     <p id="tabs-callback-url-error-message" class="error-message">
                     </p>
@@ -155,7 +160,7 @@
                     <div class="clearfix">
                         <label id="tabs-throttle-label" for="tabs-throttle">
                         </label>
-                        <input type="number" id="tabs-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="tabs-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="tabs-throttle-error-message" class="error-message">
                     </p>
@@ -170,7 +175,7 @@
                     <div class="clearfix">
                         <label id="searchs-callback-url-label" for="searchs-callback-url">
                         </label>
-                        <input type="text" id="searchs-callback-url" value="searchs"/>
+                        <input type="text" id="searchs-callback-url" class="custom-input" value="searchs"/>
                     </div>
                     <p id="searchs-callback-url-error-message" class="error-message">
                     </p>
@@ -179,7 +184,7 @@
                     <div class="clearfix">
                         <label id="searchs-throttle-label" for="searchs-throttle">
                         </label>
-                        <input type="number" id="searchs-throttle" min="0" value="0.5" step="0.1"/>
+                        <input type="number" id="searchs-throttle" class="custom-input" min="0" value="0.5" step="0.1"/>
                     </div>
                     <p id="searchs-throttle-error-message" class="error-message">
                     </p>
@@ -190,6 +195,7 @@
         </button>
     </div>
 </div>
+<script src="/js/util/bowser.js"></script>
 <script src="/js/util/ajax.js"></script>
 <script src="/js/util/serverError.js"></script>
 <script src="/js/popup/globalVariables.js"></script>

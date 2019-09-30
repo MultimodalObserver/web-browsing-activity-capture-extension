@@ -1,9 +1,23 @@
 
 function showConfigurationForm() {
-    captureButton.style.display = 'none';
+    captureInitContainer.style.display = 'none';
     captureStateContainer.style.display = 'none';
     configurationInstructionsContainer.style.display = 'none';
     configurationForm.style.display = 'block';
+}
+
+function showServerError(error){
+    configurationInstructions.innerHTML = currentBrowser.i18n.getMessage("serverErrorMessage");
+    captureInitContainer.style.display='none';
+    captureStateContainer.style.display = 'none';
+    configurationInstructionsContainer.style.display='block';
+}
+
+function showCaptureInitContainer(){
+    captureStateContainer.style.display = 'none';
+    configurationInstructionsContainer.style.display = 'none';
+    configurationForm.style.display = 'none';
+    captureInitContainer.style.display = 'block';
 }
 
 function saveConfiguration() {
@@ -64,7 +78,8 @@ function saveConfiguration() {
     Obtenemos los valores de los inputs, limpiandolos y reemplazando la palabra localhost por 127.0.0.1
     , en caso de que sea un patrón de url que comienze con localhost
     */
-    var selectedBrowser = document.getElementById('browser-select').value;
+    //var selectedBrowser = document.getElementById('browser-select').value;
+    var selectedBrowser = bowser.getParser(window.navigator.userAgent).parsedResult.browser.name;
     var serverUrl = document.getElementById('server-url').value.trim().replace('localhost', '127.0.0.1');
     var mouseMovesCallbackUrl = document.getElementById('mouse-moves-callback-url').value.trim();
     var mouseClicksCallbackUrl = document.getElementById('mouse-clicks-callback-url').value.trim();
@@ -189,10 +204,7 @@ function saveConfiguration() {
 
     currentBrowser.storage.local.set({httpsConfiguration: configurationObject}, function () {
         currentBrowser.storage.local.set({serverError: false}, function () {
-            captureStateContainer.style.display = 'none';
-            configurationInstructionsContainer.style.display = 'none';
-            configurationForm.style.display = 'none';
-            captureButton.style.display = 'block';
+            showCaptureInitContainer();
         });
     });
 }
@@ -204,6 +216,8 @@ function capture() {
         if(!configResult.httpsConfiguration){
             return;
         }
+        startCaptureLoader.style.display = 'block';
+        captureButton.style.display = 'none';
         sendAjaxRequest({
             method: "POST",
             url: configResult.httpsConfiguration.serverBaseUrl + '/start',
@@ -214,15 +228,19 @@ function capture() {
                 'client-key': 'example-key'
             },
         }, function (success) {
+            startCaptureLoader.style.display = 'none';
+            captureButton.style.display = 'block';
             currentBrowser.storage.local.set({capturing: true}, function () {
-                captureButton.style.display = 'none';
-                captureStateContainer.style.display = 'block';
                 currentBrowser.storage.local.set({serverError: false}, function () {
-
+                    window.close();
                 });
             });
         }, function (error) {
-            serverError(error, false);
+            /* Mostrar el mensaje de error de una!!!*/
+            startCaptureLoader.style.display = 'none';
+            captureButton.style.display = 'block';
+            serverError(error);
+            showServerError(error);
         });
     })
 }
@@ -238,9 +256,6 @@ function stopCapture() {
     y luego se detiene en el servidor de MO
      */
     currentBrowser.storage.local.set({capturing: false}, function () {
-        captureButton.style.display = 'block';
-        captureInitMessage.style.display = 'none';
-        captureStateButtonsContainer.style.display = 'none';
         currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
             if(!configResult.httpsConfiguration){
                 return;
@@ -253,14 +268,17 @@ function stopCapture() {
                 }
             }, function(success){
                 removeActionListeners();
-                currentBrowser.storage.local.set({serverError: false}, function () {
-                    currentBrowser.storage.local.set({capturing: false}, function () {
-                        captureButton.style.display = 'block';
-                        captureStateContainer.style.display = 'none';
+                currentBrowser.storage.local.set({capturing: false}, function () {
+                    currentBrowser.storage.local.set({serverError: false}, function () {
+                        currentBrowser.runtime.sendMessage({
+                            abortAll: true
+                        });
+                        window.close();
                     });
                 });
             }, function(error){
-                serverError(error, true);
+                serverError(error);
+                showServerError(error);
             })
         })
     });
@@ -268,7 +286,6 @@ function stopCapture() {
 
 function pauseCapture(){
     currentBrowser.storage.local.set({capturing: false}, function () {
-        captureButton.style.display = 'block';
-        captureStateContainer.style.display = 'none';
+        showCaptureInitContainer();
     });
 }

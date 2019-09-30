@@ -5,17 +5,26 @@ currentBrowser.tabs.onUpdated.addListener(sendTabUpdate);
 currentBrowser.tabs.onRemoved.addListener(sendTabClosed);
 
 currentBrowser.runtime.onMessage.addListener(function(request, sender, sendResponse){
-	if(!request.action){
+	if(request.abortAll){
+		for(var i = 0 ; i < ajaxRequests.length; i++){
+			ajaxRequests[i].abort();
+		}
+		ajaxRequests = [];
+		return;
+	}
+	else if(!request.action){
 		return;
 	}
 	currentBrowser.storage.local.get(['httpsConfiguration'], function(configResult){
-		if(!configResult.httpsConfiguration){
-			return;
-		}
-		var actionThrottleTime = configResult.httpsConfiguration[request.action].throttle * 1000;
-		var throttledFunction = actionThrottleTime !== 0 ? throttle(messagesActionsMap[request.action],
-			actionThrottleTime) : messagesActionsMap[request.action];
-		throttledFunction(request, sender, sendResponse, configResult.httpsConfiguration);
+		currentBrowser.storage.local.get(['capturing'], function(capturingResult){
+			if(!configResult.httpsConfiguration || !capturingResult.capturing){
+				return;
+			}
+			var actionThrottleTime = configResult.httpsConfiguration[request.action].throttle * 1000;
+			var throttledFunction = actionThrottleTime !== 0 ? throttle(messagesActionsMap[request.action],
+				actionThrottleTime) : messagesActionsMap[request.action];
+			throttledFunction(request, sender, sendResponse, configResult.httpsConfiguration);
+		});
 	});
 });
 

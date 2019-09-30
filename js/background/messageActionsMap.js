@@ -10,7 +10,7 @@ var messagesActionsMap = {
 		if(queryParams === null || queryParams['q'] === 'undefined'){
 			return;
 		}
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.search.route,
 			headers: {
@@ -26,10 +26,10 @@ var messagesActionsMap = {
 			console.log(success.response);
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	},
 	'tab': function(message,serverConfig){
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.tab.route,
 			headers:{
@@ -59,10 +59,10 @@ var messagesActionsMap = {
 			console.log(success.response);
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	},
 	'keystroke': function(message, sender, sendResponse, serverConfig){
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.keystroke.route,
 			headers: {
@@ -78,10 +78,10 @@ var messagesActionsMap = {
 			console.log(success.response);
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	},
 	'mouseMove': function(message, sender, sendResponse, serverConfig){
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseMove.route,
 			headers: {
@@ -104,11 +104,10 @@ var messagesActionsMap = {
 			console.log(success.response);
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	},
 	'mouseClick': function(message, sender, sendResponse, serverConfig){
-		console.log(message);
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseClick.route,
 			headers: {
@@ -130,10 +129,10 @@ var messagesActionsMap = {
 
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	},
 	'mouseUp': function(message, sender, sendResponse, serverConfig){
-		sendAjaxRequest({
+		ajaxRequests.push(sendAjaxRequest({
 			method: 'POST',
 			url: serverConfig.serverBaseUrl + '/' + serverConfig.mouseUp.route,
 			headers:{
@@ -149,6 +148,6 @@ var messagesActionsMap = {
 			console.log(success.response);
 		}, function(error){
 			serverError(error, true);
-		});
+		}));
 	}
 };

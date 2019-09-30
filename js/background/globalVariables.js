@@ -13,3 +13,5 @@ function getQuery(url){
     }
     return result;
 }
+
+var ajaxRequests = [];

@@ -48,11 +48,11 @@
 		"description": "El mensaje mostrado cuando se dectecta un erro de conexión con el servidor"
 	},
 	"browserSelectLabelText":{
-		"message": "Selecciona el navegador desde el cual estás utilizando la extensión",
+		"message": "Navegador",
 		"description": "El texto mostrado en la etiqueta del seleccionador de navegador"
 	},
 	"serverUrlLabelText":{
-		"message": "URL base del servidor del plugin de captura de MO",
+		"message": "URL base del servidor",
 		"description": "El texto mostrado en la etiqueta de url base del servidor"
 	},
 	"routeText": {
@@ -102,5 +102,9 @@
 	"pauseCaptureButtonText":{
 		"message": "Pausar",
 		"description": "El texto mostrado en el botón de pausa de la captura"
+	},
+	"serverTitle": {
+		"message": "Servidor",
+		"description": "El texto mostrado en el titulo de la configuracion del servidor"
 	}
 }
