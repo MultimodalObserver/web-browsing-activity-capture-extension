@@ -286,6 +286,6 @@ function stopCapture() {
 
 function pauseCapture(){
     currentBrowser.storage.local.set({capturing: false}, function () {
-        showCaptureInitContainer();
+        window.close();
     });
 }
