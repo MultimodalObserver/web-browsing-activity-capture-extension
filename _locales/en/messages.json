@@ -106,5 +106,9 @@
 	"serverTitle": {
 		"message": "Server",
 		"description": "The text shown in the server configuration title label"
+	},
+	"initCaptureMessageText":{
+		"message": "The capture is ready to init",
+		"description": "The text shown in the init capture message paragraph"
 	}
 }

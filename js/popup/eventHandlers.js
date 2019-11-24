@@ -217,6 +217,7 @@ function capture() {
             return;
         }
         startCaptureLoader.style.display = 'block';
+        initCaptureMessage.style.display = 'none';
         captureButton.style.display = 'none';
         sendAjaxRequest({
             method: "POST",
@@ -228,8 +229,6 @@ function capture() {
                 'client-key': 'example-key'
             },
         }, function (success) {
-            startCaptureLoader.style.display = 'none';
-            captureButton.style.display = 'block';
             currentBrowser.storage.local.set({capturing: true}, function () {
                 currentBrowser.storage.local.set({serverError: false}, function () {
                     window.close();
@@ -237,8 +236,6 @@ function capture() {
             });
         }, function (error) {
             /* Mostrar el mensaje de error de una!!!*/
-            startCaptureLoader.style.display = 'none';
-            captureButton.style.display = 'block';
             serverError(error);
             showServerError(error);
         });

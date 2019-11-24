@@ -26,6 +26,7 @@ keystrokesThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText
 tabsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 searchsThrottleLabel.innerHTML = currentBrowser.i18n.getMessage('throttleText');
 serverTitle.innerHTML = currentBrowser.i18n.getMessage('serverTitle');
+initCaptureMessage.innerHTML = currentBrowser.i18n.getMessage('initCaptureMessageText');
 
 currentBrowser.storage.local.get(['httpsConfiguration'], function(result){
 	currentBrowser.storage.local.get(['capturing'], function(res){

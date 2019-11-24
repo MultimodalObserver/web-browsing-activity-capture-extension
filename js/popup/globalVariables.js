@@ -32,3 +32,4 @@ var searchsThrottleLabel = document.getElementById('searchs-throttle-label');
 var captureStateContainer = document.getElementById('capture-state-container');
 var serverTitle = document.getElementById('server-title');
 var startCaptureLoader = document.getElementById('start-capture-loader');
+var initCaptureMessage = document.getElementById('capture-init-message');
